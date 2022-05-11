@@ -63,7 +63,7 @@
             this.loginBox.Name = "loginBox";
             this.loginBox.ReadOnly = true;
             this.loginBox.Size = new System.Drawing.Size(397, 34);
-            this.loginBox.TabIndex = 1;
+            this.loginBox.TabIndex = 4;
             // 
             // label2
             // 
@@ -81,7 +81,7 @@
             this.passBox.Location = new System.Drawing.Point(178, 64);
             this.passBox.Name = "passBox";
             this.passBox.Size = new System.Drawing.Size(397, 34);
-            this.passBox.TabIndex = 1;
+            this.passBox.TabIndex = 2;
             this.passBox.TextChanged += new System.EventHandler(this.passBox_TextChanged);
             // 
             // label3
@@ -101,7 +101,7 @@
             this.roleBox.Name = "roleBox";
             this.roleBox.ReadOnly = true;
             this.roleBox.Size = new System.Drawing.Size(396, 34);
-            this.roleBox.TabIndex = 1;
+            this.roleBox.TabIndex = 4;
             // 
             // label4
             // 
@@ -120,7 +120,7 @@
             this.createdByBox.Name = "createdByBox";
             this.createdByBox.ReadOnly = true;
             this.createdByBox.Size = new System.Drawing.Size(396, 34);
-            this.createdByBox.TabIndex = 1;
+            this.createdByBox.TabIndex = 4;
             // 
             // label5
             // 
@@ -139,7 +139,7 @@
             this.createdDateBox.Name = "createdDateBox";
             this.createdDateBox.ReadOnly = true;
             this.createdDateBox.Size = new System.Drawing.Size(396, 34);
-            this.createdDateBox.TabIndex = 1;
+            this.createdDateBox.TabIndex = 4;
             // 
             // label6
             // 
@@ -158,7 +158,7 @@
             this.updatedByBox.Name = "updatedByBox";
             this.updatedByBox.ReadOnly = true;
             this.updatedByBox.Size = new System.Drawing.Size(396, 34);
-            this.updatedByBox.TabIndex = 1;
+            this.updatedByBox.TabIndex = 4;
             // 
             // label7
             // 
@@ -177,7 +177,7 @@
             this.updatedDateBox.Name = "updatedDateBox";
             this.updatedDateBox.ReadOnly = true;
             this.updatedDateBox.Size = new System.Drawing.Size(396, 34);
-            this.updatedDateBox.TabIndex = 1;
+            this.updatedDateBox.TabIndex = 4;
             // 
             // anotherUsersBtn
             // 
@@ -185,7 +185,7 @@
             this.anotherUsersBtn.Location = new System.Drawing.Point(14, 409);
             this.anotherUsersBtn.Name = "anotherUsersBtn";
             this.anotherUsersBtn.Size = new System.Drawing.Size(269, 61);
-            this.anotherUsersBtn.TabIndex = 2;
+            this.anotherUsersBtn.TabIndex = 1;
             this.anotherUsersBtn.Text = "Другие пользователи";
             this.anotherUsersBtn.UseVisualStyleBackColor = true;
             this.anotherUsersBtn.Click += new System.EventHandler(this.anotherUsersBtn_Click);
@@ -222,6 +222,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.loginBox);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "ProfileWindow";
             this.Padding = new System.Windows.Forms.Padding(5, 10, 5, 5);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

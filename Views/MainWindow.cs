@@ -11,6 +11,7 @@ using PetrolStationDB.Database;
 using PetrolStationDB.Database.Models;
 using PetrolStationDB.Controllers;
 using PetrolStationDB.Views.Profile;
+using PetrolStationDB.Views.PetrolStationTypeView;
 
 namespace PetrolStationDB.Views
 {
@@ -18,10 +19,12 @@ namespace PetrolStationDB.Views
     {
         User mUser = null;
         authForm aForm = null;
+        PetrolStationController psCtrl;
         public MainWindow(User _user, authForm _from)
         {
             mUser = _user;
             aForm = _from;
+            psCtrl = new PetrolStationController();
             InitializeComponent();
         }
 
@@ -47,7 +50,17 @@ namespace PetrolStationDB.Views
         {
             ProfileWindow profWindow = new ProfileWindow(mUser);
             profWindow.Show();
-            //MessageBox.Show(mUser.Login);
+        }
+
+        private void typePsBtn_Click(object sender, EventArgs e)
+        {
+            PetrolStationTypeWindow psTypeWindow = new PetrolStationTypeWindow(mUser, this);
+            psTypeWindow.Show();
+        }
+
+        private void addPsBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

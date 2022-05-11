@@ -36,9 +36,18 @@
             this.addPsBtn = new System.Windows.Forms.Button();
             this.typePsBtn = new System.Windows.Forms.Button();
             this.profileBtn = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dataPsGV = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataPsGV)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -62,6 +71,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.splitContainer1.Panel2.Controls.Add(this.groupBox3);
+            this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
+            this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Size = new System.Drawing.Size(1382, 703);
             this.splitContainer1.SplitterDistance = 252;
             this.splitContainer1.TabIndex = 0;
@@ -120,6 +132,7 @@
             this.addPsBtn.TabIndex = 2;
             this.addPsBtn.Text = "Добавить АЗС";
             this.addPsBtn.UseVisualStyleBackColor = true;
+            this.addPsBtn.Click += new System.EventHandler(this.addPsBtn_Click);
             // 
             // typePsBtn
             // 
@@ -131,6 +144,7 @@
             this.typePsBtn.TabIndex = 1;
             this.typePsBtn.Text = "Тип АЗС";
             this.typePsBtn.UseVisualStyleBackColor = true;
+            this.typePsBtn.Click += new System.EventHandler(this.typePsBtn_Click);
             // 
             // profileBtn
             // 
@@ -143,6 +157,65 @@
             this.profileBtn.Text = "ПРОФИЛЬ";
             this.profileBtn.UseVisualStyleBackColor = true;
             this.profileBtn.Click += new System.EventHandler(this.profileBtn_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.BackColor = System.Drawing.Color.OldLace;
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBox3.Location = new System.Drawing.Point(0, 561);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(1126, 142);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Опции";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.groupBox2.Controls.Add(this.dataPsGV);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBox2.Location = new System.Drawing.Point(0, 205);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(1126, 356);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Таблица АЗС";
+            // 
+            // dataPsGV
+            // 
+            this.dataPsGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataPsGV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataPsGV.Location = new System.Drawing.Point(3, 30);
+            this.dataPsGV.Name = "dataPsGV";
+            this.dataPsGV.RowHeadersWidth = 51;
+            this.dataPsGV.RowTemplate.Height = 29;
+            this.dataPsGV.Size = new System.Drawing.Size(1120, 323);
+            this.dataPsGV.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.LightBlue;
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1126, 205);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Поиск по АЗС";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox1.Location = new System.Drawing.Point(3, 30);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.PlaceholderText = "Общий поиск...";
+            this.textBox1.Size = new System.Drawing.Size(1120, 34);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // MainWindow
             // 
@@ -160,8 +233,13 @@
             this.Text = "Главная";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataPsGV)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -176,5 +254,10 @@
         private Button structuresBtn;
         private Button EmployeesBtn;
         private Button addPsBtn;
+        private GroupBox groupBox1;
+        private GroupBox groupBox3;
+        private GroupBox groupBox2;
+        private TextBox textBox1;
+        private DataGridView dataPsGV;
     }
 }
