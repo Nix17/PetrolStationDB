@@ -89,5 +89,11 @@ namespace PetrolStationDB
                 MessageBox.Show("Логин не может быть пустым!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void authForm_Load(object sender, EventArgs e)
+        {
+            loginBox.Text = "root";
+            passBox.Text = "root";
+        }
     }
 }

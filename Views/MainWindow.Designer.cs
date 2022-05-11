@@ -40,7 +40,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataPsGV = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.mainCommonSearchBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -88,6 +88,7 @@
             this.materialLiabilityBtn.TabIndex = 6;
             this.materialLiabilityBtn.Text = "Материальная\r\nответвтвенность";
             this.materialLiabilityBtn.UseVisualStyleBackColor = true;
+            this.materialLiabilityBtn.Click += new System.EventHandler(this.materialLiabilityBtn_Click);
             // 
             // equipmentsBtn
             // 
@@ -99,6 +100,7 @@
             this.equipmentsBtn.TabIndex = 5;
             this.equipmentsBtn.Text = "Оборудование";
             this.equipmentsBtn.UseVisualStyleBackColor = true;
+            this.equipmentsBtn.Click += new System.EventHandler(this.equipmentsBtn_Click);
             // 
             // structuresBtn
             // 
@@ -110,6 +112,7 @@
             this.structuresBtn.TabIndex = 4;
             this.structuresBtn.Text = "Сооружения";
             this.structuresBtn.UseVisualStyleBackColor = true;
+            this.structuresBtn.Click += new System.EventHandler(this.structuresBtn_Click);
             // 
             // EmployeesBtn
             // 
@@ -121,6 +124,7 @@
             this.EmployeesBtn.TabIndex = 3;
             this.EmployeesBtn.Text = "Сотрудники";
             this.EmployeesBtn.UseVisualStyleBackColor = true;
+            this.EmployeesBtn.Click += new System.EventHandler(this.EmployeesBtn_Click);
             // 
             // addPsBtn
             // 
@@ -197,7 +201,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.LightBlue;
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.mainCommonSearchBox);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
@@ -207,15 +211,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Поиск по АЗС";
             // 
-            // textBox1
+            // mainCommonSearchBox
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox1.Location = new System.Drawing.Point(3, 30);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.PlaceholderText = "Общий поиск...";
-            this.textBox1.Size = new System.Drawing.Size(1120, 34);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mainCommonSearchBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.mainCommonSearchBox.Location = new System.Drawing.Point(3, 30);
+            this.mainCommonSearchBox.Name = "mainCommonSearchBox";
+            this.mainCommonSearchBox.PlaceholderText = "Общий поиск...";
+            this.mainCommonSearchBox.Size = new System.Drawing.Size(1120, 34);
+            this.mainCommonSearchBox.TabIndex = 0;
+            this.mainCommonSearchBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // MainWindow
             // 
@@ -257,7 +261,7 @@
         private GroupBox groupBox1;
         private GroupBox groupBox3;
         private GroupBox groupBox2;
-        private TextBox textBox1;
+        private TextBox mainCommonSearchBox;
         private DataGridView dataPsGV;
     }
 }

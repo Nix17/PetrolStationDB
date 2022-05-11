@@ -12,6 +12,11 @@ using PetrolStationDB.Database.Models;
 using PetrolStationDB.Controllers;
 using PetrolStationDB.Views.Profile;
 using PetrolStationDB.Views.PetrolStationTypeView;
+using PetrolStationDB.Views.PetrolStationView;
+using PetrolStationDB.Views.EmployeesView;
+using PetrolStationDB.Views.EquipmentView;
+using PetrolStationDB.Views.MaterialLiabilityView;
+using PetrolStationDB.Views.StructureView;
 
 namespace PetrolStationDB.Views
 {
@@ -60,7 +65,32 @@ namespace PetrolStationDB.Views
 
         private void addPsBtn_Click(object sender, EventArgs e)
         {
+            PetrolStationWindow psWindow = new PetrolStationWindow(mUser, this);
+            psWindow.Show();
+        }
 
+        private void EmployeesBtn_Click(object sender, EventArgs e)
+        {
+            EmployeesWindow employeesWindow = new EmployeesWindow(mUser, this);
+            employeesWindow.Show();
+        }
+
+        private void structuresBtn_Click(object sender, EventArgs e)
+        {
+            StructureWindow structureWindow = new StructureWindow(mUser, this);
+            structureWindow.Show();
+        }
+
+        private void equipmentsBtn_Click(object sender, EventArgs e)
+        {
+            EquipmentWindow equipmentWindow = new EquipmentWindow(mUser, this);
+            equipmentWindow.Show();
+        }
+
+        private void materialLiabilityBtn_Click(object sender, EventArgs e)
+        {
+            MaterialLiabilityWindow materialLiabilityWindow = new MaterialLiabilityWindow(mUser, this);
+            materialLiabilityWindow.Show();
         }
     }
 }
