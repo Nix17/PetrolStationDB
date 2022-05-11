@@ -20,7 +20,7 @@ namespace PetrolStationDB.Database
 
         public _ContextDb()
         {
-            Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

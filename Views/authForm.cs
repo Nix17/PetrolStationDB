@@ -1,12 +1,16 @@
 using PetrolStationDB.Database;
 using PetrolStationDB.Database.Models;
+using PetrolStationDB.Controllers;
+using PetrolStationDB.Views;
 
 namespace PetrolStationDB
 {
     public partial class authForm : Form
     {
+        AuthorizationController authCtrl;
         public authForm()
         {
+            authCtrl = new AuthorizationController();
             InitializeComponent();
         }
         Point lastPoint;
@@ -58,8 +62,32 @@ namespace PetrolStationDB
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
-
-            MessageBox.Show(DateTime.Now.ToString());
+            if (loginBox.Text != "")
+            {
+                if(passBox.Text != "")
+                {
+                    User myUser = authCtrl.AuthToApp(loginBox.Text, passBox.Text);
+                    if (myUser != null)
+                    {
+                        myUser.Password = passBox.Text;
+                        this.Hide();
+                        MainWindow mainWindow = new MainWindow(myUser, this);
+                        mainWindow.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка!! Неверные данные!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Пароль не может быть пустым!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Логин не может быть пустым!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
