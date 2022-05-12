@@ -143,6 +143,7 @@
             // 
             // numStationBox
             // 
+            this.numStationBox.Enabled = false;
             this.numStationBox.Location = new System.Drawing.Point(138, 37);
             this.numStationBox.Name = "numStationBox";
             this.numStationBox.ReadOnly = true;

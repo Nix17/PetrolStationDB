@@ -71,5 +71,29 @@ namespace PetrolStationDB.Controllers
             }
             return result;
         }
+
+        public PetrolStation GetSinglePStation(Guid _id)
+        {
+            PetrolStation ps = null;
+
+            using (_ContextDb db = new _ContextDb())
+            {
+                ps = db.PetrolStations.Single(p => p.Id == _id);
+            }
+
+            return ps;
+        }
+
+        public List<PetrolStation> GetAllPetrolStations()
+        {
+            List<PetrolStation> list = null;
+
+            using(_ContextDb db = new _ContextDb())
+            {
+                list = db.PetrolStations.ToList();
+            }
+
+            return list;
+        }
     }
 }

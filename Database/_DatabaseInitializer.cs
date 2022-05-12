@@ -182,6 +182,7 @@ namespace PetrolStationDB.Database
                         PetrolStationId = ps.Find(p => p.NumberStation == 1).Id,
                         CreatedBy = str_ini_by,
                         CreatedDate= DateTime.Now,
+                        UpdatedBy = str_ini_by,
                         UpdatedDate = DateTime.Now
                     },
                     new Structure
@@ -192,6 +193,7 @@ namespace PetrolStationDB.Database
                         PetrolStationId = ps.Find(p => p.NumberStation == 1).Id,
                         CreatedBy = str_ini_by,
                         CreatedDate= DateTime.Now,
+                        UpdatedBy = str_ini_by,
                         UpdatedDate = DateTime.Now
                     },
                     new Structure
@@ -202,6 +204,7 @@ namespace PetrolStationDB.Database
                         PetrolStationId = ps.Find(p => p.NumberStation == 2).Id,
                         CreatedBy = str_ini_by,
                         CreatedDate= DateTime.Now,
+                        UpdatedBy = str_ini_by,
                         UpdatedDate = DateTime.Now
                     },
                     new Structure
@@ -212,6 +215,7 @@ namespace PetrolStationDB.Database
                         PetrolStationId = ps.Find(p => p.NumberStation == 3).Id,
                         CreatedBy = str_ini_by,
                         CreatedDate= DateTime.Now,
+                        UpdatedBy = str_ini_by,
                         UpdatedDate = DateTime.Now
                     }
                 };
@@ -223,6 +227,7 @@ namespace PetrolStationDB.Database
             if (!_context.Employees.Any())
             {
                 var ps = _context.PetrolStations.ToList();
+                string defaultUrl = "https://secure.gravatar.com/avatar/833c2d4165b70f183a27744cfc123396?s=100&d=mm&r=g";
                 var items = new Employee[]
                 {
                     new Employee
@@ -232,7 +237,7 @@ namespace PetrolStationDB.Database
                         LastName = "Александрова",
                         FirstName = "Екатерина",
                         MiddleName = "Витальевна",
-                        PhotoUrl = "",
+                        PhotoUrl = defaultUrl,
                         PetrolStationId = ps.Find(p => p.NumberStation == 1).Id,
                         CreatedBy= str_ini_by,
                         CreatedDate= DateTime.Now,
@@ -246,7 +251,7 @@ namespace PetrolStationDB.Database
                         LastName = "Алиев",
                         FirstName = "Денис",
                         MiddleName = "Игоревич",
-                        PhotoUrl = "",
+                        PhotoUrl = defaultUrl,
                         PetrolStationId = ps.Find(p => p.NumberStation == 1).Id,
                         CreatedBy= str_ini_by,
                         CreatedDate= DateTime.Now,
@@ -260,7 +265,7 @@ namespace PetrolStationDB.Database
                         LastName = "Ильин",
                         FirstName = "Александр",
                         MiddleName = "Валерьевич",
-                        PhotoUrl = "",
+                        PhotoUrl = defaultUrl,
                         PetrolStationId = ps.Find(p => p.NumberStation == 1).Id,
                         CreatedBy= str_ini_by,
                         CreatedDate= DateTime.Now,
@@ -274,7 +279,7 @@ namespace PetrolStationDB.Database
                         LastName = "Новоселов",
                         FirstName = "Антон",
                         MiddleName = "Маркелович",
-                        PhotoUrl = "",
+                        PhotoUrl = defaultUrl,
                         PetrolStationId = ps.Find(p => p.NumberStation == 2).Id,
                         CreatedBy= str_ini_by,
                         CreatedDate= DateTime.Now,
@@ -288,7 +293,7 @@ namespace PetrolStationDB.Database
                         LastName = "Павлов",
                         FirstName = "Филипп",
                         MiddleName = "Аркадьевич",
-                        PhotoUrl = "",
+                        PhotoUrl = defaultUrl,
                         PetrolStationId = ps.Find(p => p.NumberStation == 2).Id,
                         CreatedBy= str_ini_by,
                         CreatedDate= DateTime.Now,
@@ -302,7 +307,7 @@ namespace PetrolStationDB.Database
                         LastName = "Шутов",
                         FirstName = "Руслан",
                         MiddleName = "Алексеевич",
-                        PhotoUrl = "",
+                        PhotoUrl = defaultUrl,
                         PetrolStationId = ps.Find(p => p.NumberStation == 3).Id,
                         CreatedBy= str_ini_by,
                         CreatedDate= DateTime.Now,
@@ -316,7 +321,7 @@ namespace PetrolStationDB.Database
                         LastName = "Кева",
                         FirstName = "Татьяна",
                         MiddleName = "Владимировна",
-                        PhotoUrl = "",
+                        PhotoUrl = defaultUrl,
                         PetrolStationId = ps.Find(p => p.NumberStation == 3).Id,
                         CreatedBy= str_ini_by,
                         CreatedDate= DateTime.Now,
