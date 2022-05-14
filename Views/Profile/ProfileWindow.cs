@@ -61,6 +61,16 @@ namespace PetrolStationDB.Views.Profile
         private void ProfileWindow_Load(object sender, EventArgs e)
         {
             ReloadData(mUser);
+            switch (mUser.Role)
+            {
+                case "admin":
+                    anotherUsersBtn.Visible = false;
+                    break;
+
+                case "user":
+                    anotherUsersBtn.Visible = false;
+                    break;
+            }
         }
 
         private void saveBtn_Click(object sender, EventArgs e)

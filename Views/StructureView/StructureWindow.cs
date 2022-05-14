@@ -34,6 +34,14 @@ namespace PetrolStationDB.Views.StructureView
         {
             UpdateForm();
             UpdateFormTwo();
+            switch (mUser.Role)
+            {
+                case "user":
+                    dataStructureGV.Columns[10].Visible = false;
+                    dataStructureGV.Columns[11].Visible = false;
+                    groupBox3.Visible = false;
+                    break;
+            }
         }
 
         private void UpdateForm(string search = "", string field = "")

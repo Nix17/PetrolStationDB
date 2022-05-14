@@ -29,6 +29,7 @@ namespace PetrolStationDB.Views.EmployeesView
             mainWindow = _form;
             controller = new EmployeeController();
             psCtrl = new PetrolStationController();
+            
             InitializeComponent();
         }
 
@@ -59,6 +60,13 @@ namespace PetrolStationDB.Views.EmployeesView
 
         private void UpdateForm(string search = "", string field = "")
         {
+            switch (mUser.Role)
+            {
+                case "user":
+                    dataEmployeesGV.Columns[11].Visible = false;
+                    dataEmployeesGV.Columns[12].Visible = false;
+                    break;
+            }
             dataEmployeesGV.Rows.Clear();
 
             this.employees = controller.GetEmployees(search, field);
@@ -126,6 +134,12 @@ namespace PetrolStationDB.Views.EmployeesView
         {
             UpdateForm();
             UpdateFormTwo();
+            switch (mUser.Role)
+            {
+                case "user":
+                    tabControl1.TabPages.Remove(tabControl1.TabPages[1]);
+                    break;
+            }
         }
 
         private bool SaveDataGVChanges(DataGridViewCellEventArgs e)

@@ -33,6 +33,15 @@ namespace PetrolStationDB.Views
             aForm = _from;
             controller = new PetrolStationController();
             InitializeComponent();
+            switch (_user.Role)
+            {
+                case "user":
+                    typePsBtn.Visible = false;
+                    addPsBtn.Visible = false;
+                    dataPsGV.Columns[9].Visible = false;
+                    backupDbBtn.Visible = false;
+                    break;
+            }
         }
 
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)

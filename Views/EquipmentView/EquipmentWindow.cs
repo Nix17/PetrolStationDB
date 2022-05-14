@@ -97,6 +97,14 @@ namespace PetrolStationDB.Views.EquipmentView
             ClearFilters();
             UpdateForm();
             UpdateFormTwo();
+            switch (mUser.Role)
+            {
+                case "user":
+                    tabControl1.TabPages.Remove(tabControl1.TabPages[1]);
+                    dataEquipmentGV.Columns[11].Visible = false;
+                    dataEquipmentGV.Columns[12].Visible = false;
+                    break;
+            }
         }
 
         private void clearBtn_Click(object sender, EventArgs e)

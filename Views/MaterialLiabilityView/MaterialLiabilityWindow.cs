@@ -125,6 +125,13 @@ namespace PetrolStationDB.Views.MaterialLiabilityView
             UpdateForm();
             UpdateEmployeeCmbBox();
             UpdateEquipmentCmbBox();
+            switch (mUser.Role)
+            {
+                case "user":
+                    groupBox2.Visible = false;
+                    dataMatLiabGV.Columns[9].Visible = false;
+                    break;
+            }
         }
 
         private void addNewMatLiabBtn_Click(object sender, EventArgs e)
