@@ -20,7 +20,7 @@ namespace PetrolStationDB.Controllers
             {
                 if(search == "")
                 {
-                    return employees = db.Employees.ToList();
+                    return employees = db.Employees.OrderBy(e => e.PersonnelNumber).ToList();
                 }
                 else
                 {
@@ -36,32 +36,32 @@ namespace PetrolStationDB.Controllers
                                     || e.UpdatedBy.ToLower().Contains(search.ToLower())
                                     || e.CreatedDate.ToString().ToLower().Contains(search.ToLower())
                                     || e.UpdatedDate.ToString().ToLower().Contains(search.ToLower())
-                                ).ToList();
+                                ).OrderBy(e => e.PersonnelNumber).ToList();
                             break;
 
                         case "lastname":
                             employees = db.Employees
                                 .Where(
                                     e => e.LastName.ToLower().Contains(search.ToLower())
-                                ).ToList();
+                                ).OrderBy(e => e.PersonnelNumber).ToList();
                             break;
 
                         case "firstname":
                             employees = db.Employees
                                 .Where(
                                     e => e.FirstName.ToLower().Contains(search.ToLower())
-                                ).ToList();
+                                ).OrderBy(e => e.PersonnelNumber).ToList();
                             break;
 
                         case "middlename":
                             employees = db.Employees
                                 .Where(
                                     e => e.MiddleName.ToLower().Contains(search.ToLower())
-                                ).ToList();
+                                ).OrderBy(e => e.PersonnelNumber).ToList();
                             break;
 
                         default:
-                            employees = db.Employees.ToList();
+                            employees = db.Employees.OrderBy(e => e.PersonnelNumber).ToList();
                             break;
                     }
                 }

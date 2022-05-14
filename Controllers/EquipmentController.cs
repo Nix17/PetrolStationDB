@@ -181,5 +181,23 @@ namespace PetrolStationDB.Controllers
 
             return equipment;
         }
+
+        public List<Equipment> GetEquipmentsByStructureId(Guid _guid)
+        {
+            List<Equipment> results = null;
+
+            try
+            {
+                using (_ContextDb db = new _ContextDb())
+                {
+                    results = db.Equipments.Where(eq => eq.StructureId == _guid).ToList();
+                }
+            }catch (Exception ex)
+            {
+                return null;
+            }
+
+            return results;
+        }
     }
 }

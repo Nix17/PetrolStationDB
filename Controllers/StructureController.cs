@@ -188,5 +188,29 @@ namespace PetrolStationDB.Controllers
 
             return structure;
         }
+
+        public Guid GetStructureIdByPetrolStationId(Guid _guid)
+        {
+            Guid result = Guid.Empty;
+
+            try
+            {
+                using(_ContextDb db = new _ContextDb())
+                {
+                    Structure structure = db.Structures.FirstOrDefault(s => s.PetrolStationId == _guid);
+
+                    if(structure != null)
+                    {
+                        result = structure.Id;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Guid.Empty;
+            }
+
+            return result;
+        }
     }
 }

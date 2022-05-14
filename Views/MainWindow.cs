@@ -159,5 +159,45 @@ namespace PetrolStationDB.Views
         {
             MainClearFilters();
         }
+
+        private bool DeletePetrolStation(DataGridViewCellEventArgs e)
+        {
+            bool result = false;
+
+            Guid _guid = (Guid)dataPsGV[0, e.RowIndex].Value;
+            if (controller.DeletePetrolStationById(_guid))
+            {
+                MainClearFilters();
+                MainUpdateForm();
+                result = true;
+            }
+
+            return result;
+        }
+
+        private void dataPsGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.ColumnIndex == 4)
+            {
+                Guid _guid = (Guid)dataPsGV[0, e.RowIndex].Value;
+                string _psName = dataPsGV[1, e.RowIndex].Value + "; " + dataPsGV[2, e.RowIndex].Value;
+                ListEquipmentFromPS listForm = new ListEquipmentFromPS(_guid, _psName);
+                listForm.Show();
+            }else if(e.ColumnIndex == 9)
+            {
+                string message = "Вы действительно хотите удалить АЗС?";
+                if (MessageBox.Show(message, "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    if (DeletePetrolStation(e))
+                    {
+                        MessageBox.Show("АЗС была успешно удалена.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Произошла ошибка при удалении данных!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
     }
 }

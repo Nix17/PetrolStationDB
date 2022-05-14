@@ -193,5 +193,30 @@ namespace PetrolStationDB.Controllers
 
             return list;
         }
+
+        public bool DeletePetrolStationById(Guid _guid)
+        {
+            bool result = false;
+
+            try
+            {
+                using (_ContextDb db = new _ContextDb())
+                {
+                    PetrolStation item = db.PetrolStations.FirstOrDefault(ps => ps.Id == _guid);
+
+                    if(item != null)
+                    {
+                        db.PetrolStations.Remove(item);
+                        db.SaveChanges();
+                        result = true;
+                    }
+                }
+            }catch(Exception ex)
+            {
+                return false;
+            }
+
+            return result;
+        }
     }
 }

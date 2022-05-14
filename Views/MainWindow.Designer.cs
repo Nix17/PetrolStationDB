@@ -41,11 +41,6 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataPsGV = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.mainClearBtn = new System.Windows.Forms.Button();
-            this.mainLocationPStatSearchBox = new System.Windows.Forms.TextBox();
-            this.mainNumPStatSearchBox = new System.Windows.Forms.TextBox();
-            this.mainCommonSearchBox = new System.Windows.Forms.TextBox();
             this.guidCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numStatCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.locationCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,6 +51,11 @@
             this.updatedByCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.updatedDateCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deleteBtnCol = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.mainClearBtn = new System.Windows.Forms.Button();
+            this.mainLocationPStatSearchBox = new System.Windows.Forms.TextBox();
+            this.mainNumPStatSearchBox = new System.Windows.Forms.TextBox();
+            this.mainCommonSearchBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -225,6 +225,101 @@
             this.dataPsGV.RowTemplate.Height = 29;
             this.dataPsGV.Size = new System.Drawing.Size(1120, 470);
             this.dataPsGV.TabIndex = 0;
+            this.dataPsGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataPsGV_CellContentClick);
+            // 
+            // guidCol
+            // 
+            this.guidCol.HeaderText = "GUID";
+            this.guidCol.MinimumWidth = 6;
+            this.guidCol.Name = "guidCol";
+            this.guidCol.ReadOnly = true;
+            this.guidCol.Visible = false;
+            this.guidCol.Width = 125;
+            // 
+            // numStatCol
+            // 
+            this.numStatCol.HeaderText = "Номер АЗС";
+            this.numStatCol.MinimumWidth = 6;
+            this.numStatCol.Name = "numStatCol";
+            this.numStatCol.ReadOnly = true;
+            this.numStatCol.Width = 125;
+            // 
+            // locationCol
+            // 
+            this.locationCol.HeaderText = "Локация";
+            this.locationCol.MinimumWidth = 6;
+            this.locationCol.Name = "locationCol";
+            this.locationCol.ReadOnly = true;
+            this.locationCol.Width = 200;
+            // 
+            // typePetrolStationCol
+            // 
+            this.typePetrolStationCol.HeaderText = "Тип АЗС";
+            this.typePetrolStationCol.MinimumWidth = 6;
+            this.typePetrolStationCol.Name = "typePetrolStationCol";
+            this.typePetrolStationCol.ReadOnly = true;
+            this.typePetrolStationCol.Width = 200;
+            // 
+            // listEquipmentCol
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.listEquipmentCol.DefaultCellStyle = dataGridViewCellStyle1;
+            this.listEquipmentCol.HeaderText = "Список оборудования";
+            this.listEquipmentCol.MinimumWidth = 6;
+            this.listEquipmentCol.Name = "listEquipmentCol";
+            this.listEquipmentCol.Width = 200;
+            // 
+            // createdByCol
+            // 
+            this.createdByCol.HeaderText = "Кем создано";
+            this.createdByCol.MinimumWidth = 6;
+            this.createdByCol.Name = "createdByCol";
+            this.createdByCol.ReadOnly = true;
+            this.createdByCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.createdByCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.createdByCol.Width = 125;
+            // 
+            // createdDateCol
+            // 
+            this.createdDateCol.HeaderText = "Создан";
+            this.createdDateCol.MinimumWidth = 6;
+            this.createdDateCol.Name = "createdDateCol";
+            this.createdDateCol.ReadOnly = true;
+            this.createdDateCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.createdDateCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.createdDateCol.Width = 170;
+            // 
+            // updatedByCol
+            // 
+            this.updatedByCol.HeaderText = "Кем обновлён";
+            this.updatedByCol.MinimumWidth = 6;
+            this.updatedByCol.Name = "updatedByCol";
+            this.updatedByCol.ReadOnly = true;
+            this.updatedByCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.updatedByCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.updatedByCol.Width = 125;
+            // 
+            // updatedDateCol
+            // 
+            this.updatedDateCol.HeaderText = "Обновлён";
+            this.updatedDateCol.MinimumWidth = 6;
+            this.updatedDateCol.Name = "updatedDateCol";
+            this.updatedDateCol.ReadOnly = true;
+            this.updatedDateCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.updatedDateCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.updatedDateCol.Width = 170;
+            // 
+            // deleteBtnCol
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Red;
+            this.deleteBtnCol.DefaultCellStyle = dataGridViewCellStyle2;
+            this.deleteBtnCol.HeaderText = "Удалить";
+            this.deleteBtnCol.MinimumWidth = 6;
+            this.deleteBtnCol.Name = "deleteBtnCol";
+            this.deleteBtnCol.ReadOnly = true;
+            this.deleteBtnCol.Width = 125;
             // 
             // groupBox1
             // 
@@ -284,99 +379,6 @@
             this.mainCommonSearchBox.TabIndex = 0;
             this.mainCommonSearchBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.mainCommonSearchBox.TextChanged += new System.EventHandler(this.mainCommonSearchBox_TextChanged);
-            // 
-            // guidCol
-            // 
-            this.guidCol.HeaderText = "GUID";
-            this.guidCol.MinimumWidth = 6;
-            this.guidCol.Name = "guidCol";
-            this.guidCol.ReadOnly = true;
-            this.guidCol.Visible = false;
-            this.guidCol.Width = 125;
-            // 
-            // numStatCol
-            // 
-            this.numStatCol.HeaderText = "Номер АЗС";
-            this.numStatCol.MinimumWidth = 6;
-            this.numStatCol.Name = "numStatCol";
-            this.numStatCol.ReadOnly = true;
-            // 
-            // locationCol
-            // 
-            this.locationCol.HeaderText = "Локация";
-            this.locationCol.MinimumWidth = 6;
-            this.locationCol.Name = "locationCol";
-            this.locationCol.ReadOnly = true;
-            this.locationCol.Width = 200;
-            // 
-            // typePetrolStationCol
-            // 
-            this.typePetrolStationCol.HeaderText = "Тип АЗС";
-            this.typePetrolStationCol.MinimumWidth = 6;
-            this.typePetrolStationCol.Name = "typePetrolStationCol";
-            this.typePetrolStationCol.ReadOnly = true;
-            this.typePetrolStationCol.Width = 200;
-            // 
-            // listEquipmentCol
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.listEquipmentCol.DefaultCellStyle = dataGridViewCellStyle1;
-            this.listEquipmentCol.HeaderText = "Список оборудования";
-            this.listEquipmentCol.MinimumWidth = 6;
-            this.listEquipmentCol.Name = "listEquipmentCol";
-            this.listEquipmentCol.Width = 200;
-            // 
-            // createdByCol
-            // 
-            this.createdByCol.HeaderText = "Кем создано";
-            this.createdByCol.MinimumWidth = 6;
-            this.createdByCol.Name = "createdByCol";
-            this.createdByCol.ReadOnly = true;
-            this.createdByCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.createdByCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.createdByCol.Width = 125;
-            // 
-            // createdDateCol
-            // 
-            this.createdDateCol.HeaderText = "Создан";
-            this.createdDateCol.MinimumWidth = 6;
-            this.createdDateCol.Name = "createdDateCol";
-            this.createdDateCol.ReadOnly = true;
-            this.createdDateCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.createdDateCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.createdDateCol.Width = 125;
-            // 
-            // updatedByCol
-            // 
-            this.updatedByCol.HeaderText = "Кем обновлён";
-            this.updatedByCol.MinimumWidth = 6;
-            this.updatedByCol.Name = "updatedByCol";
-            this.updatedByCol.ReadOnly = true;
-            this.updatedByCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.updatedByCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.updatedByCol.Width = 125;
-            // 
-            // updatedDateCol
-            // 
-            this.updatedDateCol.HeaderText = "Обновлён";
-            this.updatedDateCol.MinimumWidth = 6;
-            this.updatedDateCol.Name = "updatedDateCol";
-            this.updatedDateCol.ReadOnly = true;
-            this.updatedDateCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.updatedDateCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.updatedDateCol.Width = 125;
-            // 
-            // deleteBtnCol
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Red;
-            this.deleteBtnCol.DefaultCellStyle = dataGridViewCellStyle2;
-            this.deleteBtnCol.HeaderText = "Удалить";
-            this.deleteBtnCol.MinimumWidth = 6;
-            this.deleteBtnCol.Name = "deleteBtnCol";
-            this.deleteBtnCol.ReadOnly = true;
-            this.deleteBtnCol.Width = 125;
             // 
             // MainWindow
             // 
