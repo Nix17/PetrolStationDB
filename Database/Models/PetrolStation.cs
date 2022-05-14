@@ -22,4 +22,12 @@ namespace PetrolStationDB.Database.Models
         public Guid PetrolStationTypeId { get; set; }
         public PetrolStationType PetrolStationType { get; set; }
     }
+
+    [NotMapped]
+    public class PetrolStationMaxPriceEquipment
+    {
+        public Guid Id { get; set; }
+        public Guid StructureID { get; set; }
+        public decimal CommonMaxPriceEquipments { get; set; }
+    }
 }

@@ -73,6 +73,7 @@
             this.numCol.MinimumWidth = 6;
             this.numCol.Name = "numCol";
             this.numCol.ReadOnly = true;
+            this.numCol.Width = 125;
             // 
             // invNumCol
             // 
@@ -100,9 +101,10 @@
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "ListEquipmentFromPS";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Список оборудования";
             this.Load += new System.EventHandler(this.ListEquipmentFromPS_Load);
             this.groupBox1.ResumeLayout(false);

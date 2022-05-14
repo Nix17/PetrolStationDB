@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.materialLiabilityBtn = new System.Windows.Forms.Button();
             this.equipmentsBtn = new System.Windows.Forms.Button();
@@ -39,6 +39,9 @@
             this.typePsBtn = new System.Windows.Forms.Button();
             this.profileBtn = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.backupDbBtn = new System.Windows.Forms.Button();
+            this.exportToWordBtn = new System.Windows.Forms.Button();
+            this.commonMaxPriceEqPsBtn = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataPsGV = new System.Windows.Forms.DataGridView();
             this.guidCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,6 +63,7 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataPsGV)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -89,7 +93,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.groupBox3);
             this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(1382, 853);
+            this.splitContainer1.Size = new System.Drawing.Size(1382, 739);
             this.splitContainer1.SplitterDistance = 252;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -180,14 +184,50 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.OldLace;
+            this.groupBox3.Controls.Add(this.backupDbBtn);
+            this.groupBox3.Controls.Add(this.exportToWordBtn);
+            this.groupBox3.Controls.Add(this.commonMaxPriceEqPsBtn);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupBox3.Location = new System.Drawing.Point(0, 620);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1126, 233);
+            this.groupBox3.Size = new System.Drawing.Size(1126, 119);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Опции";
+            // 
+            // backupDbBtn
+            // 
+            this.backupDbBtn.ForeColor = System.Drawing.Color.OrangeRed;
+            this.backupDbBtn.Location = new System.Drawing.Point(602, 33);
+            this.backupDbBtn.Name = "backupDbBtn";
+            this.backupDbBtn.Size = new System.Drawing.Size(512, 74);
+            this.backupDbBtn.TabIndex = 2;
+            this.backupDbBtn.Text = "Резервное копирование Базы данных";
+            this.backupDbBtn.UseVisualStyleBackColor = true;
+            this.backupDbBtn.Click += new System.EventHandler(this.backupDbBtn_Click);
+            // 
+            // exportToWordBtn
+            // 
+            this.exportToWordBtn.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.exportToWordBtn.Location = new System.Drawing.Point(416, 33);
+            this.exportToWordBtn.Name = "exportToWordBtn";
+            this.exportToWordBtn.Size = new System.Drawing.Size(180, 74);
+            this.exportToWordBtn.TabIndex = 1;
+            this.exportToWordBtn.Text = "Экспорт в MSWord";
+            this.exportToWordBtn.UseVisualStyleBackColor = true;
+            this.exportToWordBtn.Click += new System.EventHandler(this.exportToWordBtn_Click);
+            // 
+            // commonMaxPriceEqPsBtn
+            // 
+            this.commonMaxPriceEqPsBtn.ForeColor = System.Drawing.Color.Olive;
+            this.commonMaxPriceEqPsBtn.Location = new System.Drawing.Point(6, 33);
+            this.commonMaxPriceEqPsBtn.Name = "commonMaxPriceEqPsBtn";
+            this.commonMaxPriceEqPsBtn.Size = new System.Drawing.Size(404, 74);
+            this.commonMaxPriceEqPsBtn.TabIndex = 0;
+            this.commonMaxPriceEqPsBtn.Text = "АЗС с максимальной общей стоимостью обородования";
+            this.commonMaxPriceEqPsBtn.UseVisualStyleBackColor = true;
+            this.commonMaxPriceEqPsBtn.Click += new System.EventHandler(this.commonMaxPriceEqPsBtn_Click);
             // 
             // groupBox2
             // 
@@ -262,9 +302,9 @@
             // 
             // listEquipmentCol
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.listEquipmentCol.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.listEquipmentCol.DefaultCellStyle = dataGridViewCellStyle7;
             this.listEquipmentCol.HeaderText = "Список оборудования";
             this.listEquipmentCol.MinimumWidth = 6;
             this.listEquipmentCol.Name = "listEquipmentCol";
@@ -312,9 +352,9 @@
             // 
             // deleteBtnCol
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Red;
-            this.deleteBtnCol.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Red;
+            this.deleteBtnCol.DefaultCellStyle = dataGridViewCellStyle8;
             this.deleteBtnCol.HeaderText = "Удалить";
             this.deleteBtnCol.MinimumWidth = 6;
             this.deleteBtnCol.Name = "deleteBtnCol";
@@ -384,7 +424,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1382, 853);
+            this.ClientSize = new System.Drawing.Size(1382, 739);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -400,6 +440,7 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataPsGV)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -436,5 +477,8 @@
         private DataGridViewTextBoxColumn updatedByCol;
         private DataGridViewTextBoxColumn updatedDateCol;
         private DataGridViewButtonColumn deleteBtnCol;
+        private Button backupDbBtn;
+        private Button exportToWordBtn;
+        private Button commonMaxPriceEqPsBtn;
     }
 }

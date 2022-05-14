@@ -218,5 +218,51 @@ namespace PetrolStationDB.Controllers
 
             return result;
         }
+
+        public PetrolStation GetPetrolStationCommonMaxPriceEquipments()
+        {
+            PetrolStation result = null;
+
+            try
+            {
+                using(_ContextDb db = new _ContextDb())
+                {
+                    var list =
+                        db.Structures
+                        .Join(
+                            db.PetrolStations,
+                            st => st.PetrolStationId,
+                            ps => ps.Id,
+                            (st, ps) => new PetrolStationMaxPriceEquipment
+                            {
+                                Id = ps.Id,
+                                StructureID = st.Id,
+                                CommonMaxPriceEquipments = 0
+                            });
+
+                    var equipments = db.Equipments.ToList();
+                    foreach (var item in list)
+                    {
+                        item.CommonMaxPriceEquipments = equipments.Where(x => x.StructureId == item.StructureID).Sum(x => x.Price);
+                    }
+
+                    decimal max = list.Max(x => x.CommonMaxPriceEquipments);
+                    var psItems = db.PetrolStations.ToList();
+                    foreach (var item in list)
+                    {
+                        if(item.CommonMaxPriceEquipments == max)
+                        {
+                            result = psItems.FirstOrDefault(ps => ps.Id == item.Id);
+                            break;
+                        }
+                    }
+                }
+            }catch(Exception ex)
+            {
+                return null;
+            }
+
+            return result;
+        }
     }
 }

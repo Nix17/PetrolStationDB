@@ -17,6 +17,7 @@ using PetrolStationDB.Views.EmployeesView;
 using PetrolStationDB.Views.EquipmentView;
 using PetrolStationDB.Views.MaterialLiabilityView;
 using PetrolStationDB.Views.StructureView;
+using PetrolStationDB.Views.ExportToWordView;
 
 namespace PetrolStationDB.Views
 {
@@ -198,6 +199,30 @@ namespace PetrolStationDB.Views
                     }
                 }
             }
+        }
+
+        private void commonMaxPriceEqPsBtn_Click(object sender, EventArgs e)
+        {
+            PetrolStation res = controller.GetPetrolStationCommonMaxPriceEquipments();
+            if(res != null)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append("АЗС с масимальной общей стоимостью оборудования:\n");
+                stringBuilder.Append("Номер -- " + res.NumberStation + "\n");
+                stringBuilder.Append("Локация -- " + res.Location);
+                MessageBox.Show(stringBuilder.ToString());
+            }
+        }
+
+        private void exportToWordBtn_Click(object sender, EventArgs e)
+        {
+            ExportToWordWindow exportForm = new ExportToWordWindow();
+            exportForm.Show();
+        }
+
+        private void backupDbBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
