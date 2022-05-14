@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.materialLiabilityBtn = new System.Windows.Forms.Button();
             this.equipmentsBtn = new System.Windows.Forms.Button();
@@ -40,7 +42,20 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataPsGV = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.mainClearBtn = new System.Windows.Forms.Button();
+            this.mainLocationPStatSearchBox = new System.Windows.Forms.TextBox();
+            this.mainNumPStatSearchBox = new System.Windows.Forms.TextBox();
             this.mainCommonSearchBox = new System.Windows.Forms.TextBox();
+            this.guidCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numStatCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.locationCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.typePetrolStationCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.listEquipmentCol = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.createdByCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createdDateCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.updatedByCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.updatedDateCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deleteBtnCol = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -74,7 +89,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.groupBox3);
             this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(1382, 703);
+            this.splitContainer1.Size = new System.Drawing.Size(1382, 853);
             this.splitContainer1.SplitterDistance = 252;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -167,9 +182,9 @@
             this.groupBox3.BackColor = System.Drawing.Color.OldLace;
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBox3.Location = new System.Drawing.Point(0, 561);
+            this.groupBox3.Location = new System.Drawing.Point(0, 620);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1126, 142);
+            this.groupBox3.Size = new System.Drawing.Size(1126, 233);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Опции";
@@ -180,36 +195,84 @@
             this.groupBox2.Controls.Add(this.dataPsGV);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBox2.Location = new System.Drawing.Point(0, 205);
+            this.groupBox2.Location = new System.Drawing.Point(0, 117);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1126, 356);
+            this.groupBox2.Size = new System.Drawing.Size(1126, 503);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Таблица АЗС";
             // 
             // dataPsGV
             // 
+            this.dataPsGV.AllowUserToAddRows = false;
+            this.dataPsGV.AllowUserToDeleteRows = false;
             this.dataPsGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataPsGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.guidCol,
+            this.numStatCol,
+            this.locationCol,
+            this.typePetrolStationCol,
+            this.listEquipmentCol,
+            this.createdByCol,
+            this.createdDateCol,
+            this.updatedByCol,
+            this.updatedDateCol,
+            this.deleteBtnCol});
             this.dataPsGV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataPsGV.Location = new System.Drawing.Point(3, 30);
             this.dataPsGV.Name = "dataPsGV";
             this.dataPsGV.RowHeadersWidth = 51;
             this.dataPsGV.RowTemplate.Height = 29;
-            this.dataPsGV.Size = new System.Drawing.Size(1120, 323);
+            this.dataPsGV.Size = new System.Drawing.Size(1120, 470);
             this.dataPsGV.TabIndex = 0;
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.LightBlue;
+            this.groupBox1.Controls.Add(this.mainClearBtn);
+            this.groupBox1.Controls.Add(this.mainLocationPStatSearchBox);
+            this.groupBox1.Controls.Add(this.mainNumPStatSearchBox);
             this.groupBox1.Controls.Add(this.mainCommonSearchBox);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1126, 205);
+            this.groupBox1.Size = new System.Drawing.Size(1126, 117);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Поиск по АЗС";
+            // 
+            // mainClearBtn
+            // 
+            this.mainClearBtn.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.mainClearBtn.ForeColor = System.Drawing.Color.Red;
+            this.mainClearBtn.Location = new System.Drawing.Point(887, 69);
+            this.mainClearBtn.Name = "mainClearBtn";
+            this.mainClearBtn.Size = new System.Drawing.Size(236, 36);
+            this.mainClearBtn.TabIndex = 2;
+            this.mainClearBtn.Text = "Очистить";
+            this.mainClearBtn.UseVisualStyleBackColor = true;
+            this.mainClearBtn.Click += new System.EventHandler(this.mainClearBtn_Click);
+            // 
+            // mainLocationPStatSearchBox
+            // 
+            this.mainLocationPStatSearchBox.Location = new System.Drawing.Point(445, 70);
+            this.mainLocationPStatSearchBox.Name = "mainLocationPStatSearchBox";
+            this.mainLocationPStatSearchBox.PlaceholderText = "Поиск по локации...";
+            this.mainLocationPStatSearchBox.Size = new System.Drawing.Size(436, 34);
+            this.mainLocationPStatSearchBox.TabIndex = 1;
+            this.mainLocationPStatSearchBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mainLocationPStatSearchBox.TextChanged += new System.EventHandler(this.mainLocationPStatSearchBox_TextChanged);
+            // 
+            // mainNumPStatSearchBox
+            // 
+            this.mainNumPStatSearchBox.Location = new System.Drawing.Point(3, 70);
+            this.mainNumPStatSearchBox.Name = "mainNumPStatSearchBox";
+            this.mainNumPStatSearchBox.PlaceholderText = "Поиск по номеру АЗС...";
+            this.mainNumPStatSearchBox.Size = new System.Drawing.Size(436, 34);
+            this.mainNumPStatSearchBox.TabIndex = 1;
+            this.mainNumPStatSearchBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mainNumPStatSearchBox.TextChanged += new System.EventHandler(this.mainNumPStatSearchBox_TextChanged);
             // 
             // mainCommonSearchBox
             // 
@@ -220,12 +283,106 @@
             this.mainCommonSearchBox.Size = new System.Drawing.Size(1120, 34);
             this.mainCommonSearchBox.TabIndex = 0;
             this.mainCommonSearchBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mainCommonSearchBox.TextChanged += new System.EventHandler(this.mainCommonSearchBox_TextChanged);
+            // 
+            // guidCol
+            // 
+            this.guidCol.HeaderText = "GUID";
+            this.guidCol.MinimumWidth = 6;
+            this.guidCol.Name = "guidCol";
+            this.guidCol.ReadOnly = true;
+            this.guidCol.Visible = false;
+            this.guidCol.Width = 125;
+            // 
+            // numStatCol
+            // 
+            this.numStatCol.HeaderText = "Номер АЗС";
+            this.numStatCol.MinimumWidth = 6;
+            this.numStatCol.Name = "numStatCol";
+            this.numStatCol.ReadOnly = true;
+            // 
+            // locationCol
+            // 
+            this.locationCol.HeaderText = "Локация";
+            this.locationCol.MinimumWidth = 6;
+            this.locationCol.Name = "locationCol";
+            this.locationCol.ReadOnly = true;
+            this.locationCol.Width = 200;
+            // 
+            // typePetrolStationCol
+            // 
+            this.typePetrolStationCol.HeaderText = "Тип АЗС";
+            this.typePetrolStationCol.MinimumWidth = 6;
+            this.typePetrolStationCol.Name = "typePetrolStationCol";
+            this.typePetrolStationCol.ReadOnly = true;
+            this.typePetrolStationCol.Width = 200;
+            // 
+            // listEquipmentCol
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.listEquipmentCol.DefaultCellStyle = dataGridViewCellStyle1;
+            this.listEquipmentCol.HeaderText = "Список оборудования";
+            this.listEquipmentCol.MinimumWidth = 6;
+            this.listEquipmentCol.Name = "listEquipmentCol";
+            this.listEquipmentCol.Width = 200;
+            // 
+            // createdByCol
+            // 
+            this.createdByCol.HeaderText = "Кем создано";
+            this.createdByCol.MinimumWidth = 6;
+            this.createdByCol.Name = "createdByCol";
+            this.createdByCol.ReadOnly = true;
+            this.createdByCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.createdByCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.createdByCol.Width = 125;
+            // 
+            // createdDateCol
+            // 
+            this.createdDateCol.HeaderText = "Создан";
+            this.createdDateCol.MinimumWidth = 6;
+            this.createdDateCol.Name = "createdDateCol";
+            this.createdDateCol.ReadOnly = true;
+            this.createdDateCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.createdDateCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.createdDateCol.Width = 125;
+            // 
+            // updatedByCol
+            // 
+            this.updatedByCol.HeaderText = "Кем обновлён";
+            this.updatedByCol.MinimumWidth = 6;
+            this.updatedByCol.Name = "updatedByCol";
+            this.updatedByCol.ReadOnly = true;
+            this.updatedByCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.updatedByCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.updatedByCol.Width = 125;
+            // 
+            // updatedDateCol
+            // 
+            this.updatedDateCol.HeaderText = "Обновлён";
+            this.updatedDateCol.MinimumWidth = 6;
+            this.updatedDateCol.Name = "updatedDateCol";
+            this.updatedDateCol.ReadOnly = true;
+            this.updatedDateCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.updatedDateCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.updatedDateCol.Width = 125;
+            // 
+            // deleteBtnCol
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Red;
+            this.deleteBtnCol.DefaultCellStyle = dataGridViewCellStyle2;
+            this.deleteBtnCol.HeaderText = "Удалить";
+            this.deleteBtnCol.MinimumWidth = 6;
+            this.deleteBtnCol.Name = "deleteBtnCol";
+            this.deleteBtnCol.ReadOnly = true;
+            this.deleteBtnCol.Width = 125;
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1382, 703);
+            this.ClientSize = new System.Drawing.Size(1382, 853);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -236,6 +393,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Главная";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
+            this.Load += new System.EventHandler(this.MainWindow_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -263,5 +421,18 @@
         private GroupBox groupBox2;
         private TextBox mainCommonSearchBox;
         private DataGridView dataPsGV;
+        private Button mainClearBtn;
+        private TextBox mainLocationPStatSearchBox;
+        private TextBox mainNumPStatSearchBox;
+        private DataGridViewTextBoxColumn guidCol;
+        private DataGridViewTextBoxColumn numStatCol;
+        private DataGridViewTextBoxColumn locationCol;
+        private DataGridViewTextBoxColumn typePetrolStationCol;
+        private DataGridViewButtonColumn listEquipmentCol;
+        private DataGridViewTextBoxColumn createdByCol;
+        private DataGridViewTextBoxColumn createdDateCol;
+        private DataGridViewTextBoxColumn updatedByCol;
+        private DataGridViewTextBoxColumn updatedDateCol;
+        private DataGridViewButtonColumn deleteBtnCol;
     }
 }

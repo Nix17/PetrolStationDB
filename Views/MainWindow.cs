@@ -24,12 +24,13 @@ namespace PetrolStationDB.Views
     {
         User mUser = null;
         authForm aForm = null;
-        PetrolStationController psCtrl;
+        PetrolStationController controller = null;
+        List<PetrolStation> psItems = null;
         public MainWindow(User _user, authForm _from)
         {
             mUser = _user;
             aForm = _from;
-            psCtrl = new PetrolStationController();
+            controller = new PetrolStationController();
             InitializeComponent();
         }
 
@@ -91,6 +92,72 @@ namespace PetrolStationDB.Views
         {
             MaterialLiabilityWindow materialLiabilityWindow = new MaterialLiabilityWindow(mUser, this);
             materialLiabilityWindow.Show();
+        }
+
+        private void MainClearFilters()
+        {
+            mainCommonSearchBox.Text = String.Empty;
+            mainLocationPStatSearchBox.Text = String.Empty;
+            mainNumPStatSearchBox.Text = String.Empty;
+        }
+
+        private void MainUpdateForm(string search = "", string field = "")
+        {
+            psItems = controller.GetAllPetrolStations(search, field);
+            if(psItems != null)
+            {
+                dataPsGV.Rows.Clear();
+                for(int i = 0; i < psItems.Count; i++)
+                {
+                    dataPsGV.Rows.Add();
+                    dataPsGV[0, i].Value = psItems[i].Id;
+                    dataPsGV[1, i].Value = psItems[i].NumberStation;
+                    dataPsGV[2, i].Value = psItems[i].Location;
+
+                    string psType = controller.GetTypeNameForSinglePetrolStation(psItems[i].PetrolStationTypeId);
+
+                    dataPsGV[3, i].Value = psType;
+
+                    dataPsGV[4, i].Value = "Показать список";
+                    dataPsGV[5, i].Value = psItems[i].CreatedBy;
+                    dataPsGV[6, i].Value = psItems[i].CreatedDate.ToString();
+                    dataPsGV[7, i].Value = psItems[i].UpdatedBy;
+                    dataPsGV[8, i].Value = psItems[i].UpdatedDate.ToString();
+                    dataPsGV[9, i].Value = "Удалить";
+                }
+            }
+        }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+            MainClearFilters();
+            MainUpdateForm();
+        }
+
+        private void mainCommonSearchBox_TextChanged(object sender, EventArgs e)
+        {
+            mainNumPStatSearchBox.Text = String.Empty;
+            mainLocationPStatSearchBox.Text = String.Empty;
+            MainUpdateForm(mainCommonSearchBox.Text, "common");
+        }
+
+        private void mainNumPStatSearchBox_TextChanged(object sender, EventArgs e)
+        {
+            mainCommonSearchBox.Text = String.Empty;
+            mainLocationPStatSearchBox.Text = String.Empty;
+            MainUpdateForm(mainNumPStatSearchBox.Text, "numPStation");
+        }
+
+        private void mainLocationPStatSearchBox_TextChanged(object sender, EventArgs e)
+        {
+            mainCommonSearchBox.Text = String.Empty;
+            mainNumPStatSearchBox.Text = String.Empty;
+            MainUpdateForm(mainLocationPStatSearchBox.Text, "location");
+        }
+
+        private void mainClearBtn_Click(object sender, EventArgs e)
+        {
+            MainClearFilters();
         }
     }
 }

@@ -14,29 +14,69 @@ namespace PetrolStationDB.Controllers
     {
         public List<PetrolStationType> GetAllTypes(string search = "")
         {
-            using (_ContextDb db = new _ContextDb())
+            List<PetrolStationType> result = null;
+
+            try
             {
-                if(search == "")
+                using (_ContextDb db = new _ContextDb())
                 {
-                    return db.PetrolStationTypes.ToList();
-                }
-                else
-                {
-                    return db.PetrolStationTypes.Where(t => t.TypeName.ToLower().Contains(search.ToLower())).ToList();
+                    if (search == "")
+                    {
+                        result = db.PetrolStationTypes.ToList();
+                    }
+                    else
+                    {
+                        result = db.PetrolStationTypes.Where(t => t.TypeName.ToLower().Contains(search.ToLower())).ToList();
+                    }
                 }
             }
+            catch(Exception ex)
+            {
+                return null;
+            }
+
+            return result;
+        }
+
+        public string GetTypeNameForSinglePetrolStation(Guid _guid)
+        {
+            string typeName = "";
+
+            try
+            {
+                using(_ContextDb db = new _ContextDb())
+                {
+                    PetrolStationType type = db.PetrolStationTypes.FirstOrDefault(x => x.Id == _guid);
+                    if(type != null)
+                    {
+                        typeName = type.TypeName;
+                    }
+                }
+            }catch(Exception ex)
+            {
+                return "";
+            }
+
+            return typeName;
         }
 
         public int GetMaxNumberStation()
         {
             int maxNumberStation = 0;
 
-            using(_ContextDb db = new _ContextDb())
+            try
             {
-                if(db.PetrolStations.ToList().Count > 0)
+                using (_ContextDb db = new _ContextDb())
                 {
-                    maxNumberStation = db.PetrolStations.Max(p => p.NumberStation);
+                    if (db.PetrolStations.ToList().Count > 0)
+                    {
+                        maxNumberStation = db.PetrolStations.Max(p => p.NumberStation);
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                return 0;
             }
 
             return maxNumberStation;
@@ -51,24 +91,32 @@ namespace PetrolStationDB.Controllers
         {
             bool result = false;
 
-            using (_ContextDb db = new _ContextDb())
+            try
             {
-                PetrolStation ps = new PetrolStation
+                using (_ContextDb db = new _ContextDb())
                 {
-                    Id = Guid.NewGuid(),
-                    NumberStation = Convert.ToInt32(_num),
-                    Location = _location,
-                    PetrolStationTypeId = _guidType,
-                    CreatedBy = _user,
-                    CreatedDate = DateTime.Now,
-                    UpdatedBy = _user,
-                    UpdatedDate = DateTime.Now
-                };
+                    PetrolStation ps = new PetrolStation
+                    {
+                        Id = Guid.NewGuid(),
+                        NumberStation = Convert.ToInt32(_num),
+                        Location = _location,
+                        PetrolStationTypeId = _guidType,
+                        CreatedBy = _user,
+                        CreatedDate = DateTime.Now,
+                        UpdatedBy = _user,
+                        UpdatedDate = DateTime.Now
+                    };
 
-                db.PetrolStations.Add(ps);
-                db.SaveChanges();
-                result = true;
+                    db.PetrolStations.Add(ps);
+                    db.SaveChanges();
+                    result = true;
+                }
             }
+            catch(Exception ex)
+            {
+                return false;
+            }
+            
             return result;
         }
 
@@ -76,21 +124,71 @@ namespace PetrolStationDB.Controllers
         {
             PetrolStation ps = null;
 
-            using (_ContextDb db = new _ContextDb())
+            try
             {
-                ps = db.PetrolStations.Single(p => p.Id == _id);
+                using (_ContextDb db = new _ContextDb())
+                {
+                    ps = db.PetrolStations.Single(p => p.Id == _id);
+                }
+            }
+            catch(Exception ex)
+            {
+                return null;
             }
 
             return ps;
         }
 
-        public List<PetrolStation> GetAllPetrolStations()
+        public List<PetrolStation> GetAllPetrolStations(string search = "", string field = "")
         {
             List<PetrolStation> list = null;
 
-            using(_ContextDb db = new _ContextDb())
+            try
             {
-                list = db.PetrolStations.ToList();
+                using (_ContextDb db = new _ContextDb())
+                {
+                    if(search == "")
+                    {
+                        list = db.PetrolStations.OrderBy(ps => ps.NumberStation).ToList();
+                    }
+                    else
+                    {
+                        switch (field)
+                        {
+                            case "common":
+                                list = db.PetrolStations
+                                    .Where(
+                                        ps => ps.NumberStation.ToString().Contains(search.ToLower())
+                                        || ps.Location.ToLower().Contains(search.ToLower())
+                                        || ps.CreatedBy.ToLower().Contains(search.ToLower())
+                                        || ps.UpdatedBy.ToLower().Contains(search.ToLower())
+                                    ).OrderBy(ps => ps.NumberStation).ToList();
+                                break;
+
+                            case "numPStation":
+                                list = db.PetrolStations
+                                    .Where(
+                                        ps => ps.NumberStation.ToString().Contains(search.ToLower())
+                                    ).OrderBy(ps => ps.NumberStation).ToList();
+                                break;
+
+                            case "location":
+                                list = db.PetrolStations
+                                    .Where(
+                                        ps => ps.Location.ToLower().Contains(search.ToLower())
+                                    ).OrderBy(ps => ps.NumberStation).ToList();
+                                break;
+
+                            default:
+                                list = db.PetrolStations.OrderBy(ps => ps.NumberStation).ToList();
+                                break;
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                return null;
             }
 
             return list;
