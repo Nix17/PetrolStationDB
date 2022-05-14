@@ -213,7 +213,7 @@ namespace PetrolStationDB.Views.StructureView
                 string[] strArr = petrolStatCmbBox.SelectedItem.ToString().Split(';');
                 foreach(var item in psItems)
                 {
-                    if(item.NumberStation == Convert.ToInt32(strArr[0])) { _guid = item.Id; }
+                    if(item.NumberStation == Convert.ToInt32(strArr[0])) { _guid = item.Id; break; }
                 }
 
                 if(controller.AddNewStructure(mUser.Login, textBox1.Text, Convert.ToDecimal(textBox2.Text), _guid))
