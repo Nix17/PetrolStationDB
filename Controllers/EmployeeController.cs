@@ -162,5 +162,23 @@ namespace PetrolStationDB.Controllers
 
             return num;
         }
+
+        public Employee GetSingleEmployeeById(Guid _guid)
+        {
+            Employee employee = null;
+
+            try
+            {
+                using(_ContextDb db = new _ContextDb())
+                {
+                    employee = db.Employees.FirstOrDefault(e => e.Id == _guid);
+                }
+            }catch(Exception ex)
+            {
+                return null;
+            }
+
+            return employee;
+        }
     }
 }

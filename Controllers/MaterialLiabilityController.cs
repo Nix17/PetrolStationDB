@@ -12,5 +12,71 @@ namespace PetrolStationDB.Controllers
 {
     public class MaterialLiabilityController
     {
+        public List<MaterialLiability> GetMaterialLiabilities()
+        {
+            List<MaterialLiability> materialLiabilities = null;
+
+            try
+            {
+                using(_ContextDb db = new _ContextDb())
+                {
+                    materialLiabilities = db.MaterialLiabilitys.ToList();
+                }
+            }catch(Exception ex)
+            {
+                return null;
+            }
+
+            return materialLiabilities;
+        }
+
+        public bool AddNewMaterialLiability(string _user, MaterialLiability item)
+        {
+            bool result = false;
+
+            try
+            { 
+                using (_ContextDb db = new _ContextDb())
+                {
+                    item.Id = Guid.NewGuid();
+                    item.CreatedBy = _user;
+                    item.CreatedDate = DateTime.Now;
+                    item.UpdatedBy = _user;
+                    item.UpdatedDate = DateTime.Now;
+
+                    db.MaterialLiabilitys.Add(item);
+                    db.SaveChanges();
+                    result = true;
+                }
+            }catch(Exception ex)
+            {
+                return false;
+            }
+            return result;
+        }
+
+        public bool DeleteMaterialLiability(Guid _guid)
+        {
+            bool result = false;
+
+            try
+            {
+                using(_ContextDb db = new _ContextDb())
+                {
+                    MaterialLiability item = db.MaterialLiabilitys.FirstOrDefault(x => x.Id == _guid);
+                    if(item != null)
+                    {
+                        db.MaterialLiabilitys.Remove(item);
+                        db.SaveChanges();
+                        result = true;
+                    }
+                }
+            }catch(Exception ex)
+            {
+                return false;
+            }
+
+            return result;
+        }
     }
 }

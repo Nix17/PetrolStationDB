@@ -12,7 +12,7 @@ namespace PetrolStationDB.Controllers
 {
     public class EquipmentController
     {
-        public List<Equipment> GetEquipmentsByFilters(string search, string field)
+        public List<Equipment> GetEquipmentsByFilters(string search = "", string field = "")
         {
             List<Equipment> equipments = null;
 
@@ -162,6 +162,24 @@ namespace PetrolStationDB.Controllers
             }
 
             return result;
+        }
+
+        public Equipment GetSingleEquipmentById(Guid _guid)
+        {
+            Equipment equipment = null;
+
+            try
+            {
+                using(_ContextDb db = new _ContextDb())
+                {
+                    equipment = db.Equipments.FirstOrDefault(eq => eq.Id == _guid);
+                }
+            }catch (Exception ex)
+            {
+                return null;
+            }
+
+            return equipment;
         }
     }
 }
