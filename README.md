@@ -16,3 +16,12 @@ Required packages
 "MySqlBackup.NET" Version="2.3.6.1"
 
 "DocXCore" Version="1.0.9"
+
+
+users:
+
+login: root, pass: root
+
+login: admin, pass: admin
+
+login: user, pass: user

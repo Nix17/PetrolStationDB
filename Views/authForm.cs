@@ -92,8 +92,7 @@ namespace PetrolStationDB
 
         private void authForm_Load(object sender, EventArgs e)
         {
-            loginBox.Text = "root";
-            passBox.Text = "root";
+            
         }
     }
 }
