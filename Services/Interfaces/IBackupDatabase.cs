@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace PetrolStationDB.Services.Interfaces
 {
-    public interface IBackupMySqlDatabase : IDisposable
+    public interface IBackupDatabase : IDisposable
     {
-        bool BackupDbToDesktop(string _connectingString);
+        bool BackupMySqlDbToDesktop(string _connectingString);
+        bool BackupSQLiteDbToDesktop(string _path);
     }
 }

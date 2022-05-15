@@ -25,10 +25,14 @@ namespace PetrolStationDB.Database
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql(
+            //MySQL
+            /*optionsBuilder.UseMySql(
                 "server=localhost;user=root;password=;database=petrol_station;",
                 new MySqlServerVersion(new Version(10, 4, 24))
-            );
+            );*/
+
+            //SQLite
+            optionsBuilder.UseSqlite("Data Source=sqlite_petrol_station.db");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

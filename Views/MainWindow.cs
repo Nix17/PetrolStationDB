@@ -232,9 +232,11 @@ namespace PetrolStationDB.Views
 
         private void backupDbBtn_Click(object sender, EventArgs e)
         {
-            using (BackupMySqlDatabase backupMySqlDatabase = new BackupMySqlDatabase())
+            using (BackupDatabase backupMySqlDatabase = new BackupDatabase())
             {
-                if (backupMySqlDatabase.BackupDbToDesktop("server=localhost;user=root;pwd=;database=petrol_station;"))
+                // SQLite
+
+                if (backupMySqlDatabase.BackupSQLiteDbToDesktop("sqlite_petrol_station"))
                 {
                     MessageBox.Show("Бэкап БД успешно сделан. Файл на рабочем столе.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -242,6 +244,16 @@ namespace PetrolStationDB.Views
                 {
                     MessageBox.Show("Не получилось создать бэкап!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
+                // MySQL
+                /*if (backupMySqlDatabase.BackupMySqlDbToDesktop("server=localhost;user=root;pwd=;database=petrol_station;"))
+                {
+                    MessageBox.Show("Бэкап БД успешно сделан. Файл на рабочем столе.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Не получилось создать бэкап!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }*/
             }
         }
     }
