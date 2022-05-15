@@ -189,25 +189,28 @@ namespace PetrolStationDB.Controllers
             return structure;
         }
 
-        public Guid GetStructureIdByPetrolStationId(Guid _guid)
+        public List<Guid> GetStructureIdByPetrolStationId(Guid _guid)
         {
-            Guid result = Guid.Empty;
+            List<Guid> result = new List<Guid>();
 
             try
             {
                 using(_ContextDb db = new _ContextDb())
                 {
-                    Structure structure = db.Structures.FirstOrDefault(s => s.PetrolStationId == _guid);
+                    var structures = db.Structures.Where(x => x.PetrolStationId == _guid).ToList();
 
-                    if(structure != null)
+                    if(structures != null && structures.Count > 0)
                     {
-                        result = structure.Id;
+                        foreach (var item in structures)
+                        {
+                            result.Add(item.Id);
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                return Guid.Empty;
+                return null;
             }
 
             return result;

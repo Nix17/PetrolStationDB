@@ -112,7 +112,7 @@ namespace PetrolStationDB.Views
             mainNumPStatSearchBox.Text = String.Empty;
         }
 
-        private void MainUpdateForm(string search = "", string field = "")
+        public void MainUpdateForm(string search = "", string field = "")
         {
             psItems = controller.GetAllPetrolStations(search, field);
             if(psItems != null)

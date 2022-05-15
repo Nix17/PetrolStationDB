@@ -39,20 +39,32 @@ namespace PetrolStationDB.Views.PetrolStationView
 
         private void ListEquipmentFromPS_Load(object sender, EventArgs e)
         {
-            Guid structureGuid = structureController.GetStructureIdByPetrolStationId(petrolStationGuid);
-            if(structureGuid != Guid.Empty)
+            List<Guid> structureGuids = structureController.GetStructureIdByPetrolStationId(petrolStationGuid);
+            if(structureGuids != null && structureGuids.Count > 0)
             {
-                List<Equipment> items = equipmentController.GetEquipmentsByStructureId(structureGuid);
+                List<Equipment> equipmentItems = new List<Equipment>();
 
-                if(items != null)
+                foreach (var item in structureGuids)
+                {
+                    var equipmentResults = equipmentController.GetEquipmentsByStructureId(item);
+                    if(equipmentResults != null && equipmentResults.Count > 0)
+                    {
+                        foreach (var equipment in equipmentResults)
+                        {
+                            equipmentItems.Add(equipment);
+                        }
+                    }
+                }
+
+                if(equipmentItems != null && equipmentItems.Count > 0)
                 {
                     dataListEquipPsGV.Rows.Clear();
-                    for(int i = 0; i < items.Count; i++)
+                    for(int i = 0; i < equipmentItems.Count; i++)
                     {
                         dataListEquipPsGV.Rows.Add();
                         dataListEquipPsGV[0, i].Value = i + 1;
-                        dataListEquipPsGV[1, i].Value = items[i].InventoryNumber;
-                        dataListEquipPsGV[2, i].Value = items[i].Name;
+                        dataListEquipPsGV[1, i].Value = equipmentItems[i].InventoryNumber;
+                        dataListEquipPsGV[2, i].Value = equipmentItems[i].Name;
                     }
                 }
                 else

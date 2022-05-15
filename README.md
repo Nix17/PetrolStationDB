@@ -1,57 +1,10 @@
 PetrolStationDB
-Здесь будет описание
+Information
 
-
-
-
-ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ (Экспорт/импорт БД)
-https://stackoverflow.com/questions/12311492/backing-up-database-in-mysql-using-c-sharp
-
-Sample codes:
-
-Backup a MySQL database
-
-using MySql.Data.MySqlClient; 
-then the code,
-
-private void Backup()
-{
-    string constring = "server=localhost;user=root;pwd=qwerty;database=test;";
-    string file = "C:\\backup.sql";
-    using (MySqlConnection conn = new MySqlConnection(constring))
-    {
-        using (MySqlCommand cmd = new MySqlCommand())
-        {
-            using (MySqlBackup mb = new MySqlBackup(cmd))
-            {
-                cmd.Connection = conn;
-                conn.Open();
-                mb.ExportToFile(file);
-                conn.Close();
-            }
-        }
-    }
-}
-
-Restore a MySQL database
-
-private void Restore()
-{
-    string constring = "server=localhost;user=root;pwd=qwerty;database=test;";
-    string file = "C:\\backup.sql";
-    using (MySqlConnection conn = new MySqlConnection(constring))
-    {
-        using (MySqlCommand cmd = new MySqlCommand())
-        {
-            using (MySqlBackup mb = new MySqlBackup(cmd))
-            {
-                cmd.Connection = conn;
-                conn.Open();
-                mb.ImportFromFile(file);
-                conn.Close();
-            }
-        }
-    }
-}
-Update:
-I am one of the author of this library.
+Required packages
+"Microsoft.EntityFrameworkCore" Version="6.0.4"
+"Microsoft.EntityFrameworkCore.Tools" Version="6.0.4"
+"Pomelo.EntityFrameworkCore.MySql" Version="6.0.1"
+"MySql.Data" Version="8.0.29"
+"MySqlBackup.NET" Version="2.3.6.1"
+"DocXCore" Version="1.0.9"

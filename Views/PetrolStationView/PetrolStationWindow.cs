@@ -94,6 +94,7 @@ namespace PetrolStationDB.Views.PetrolStationView
                 {
                     MessageBox.Show("Данные о новой АЗС успешно добавлены!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ReloadTxtBoxes();
+                    mainWindow.MainUpdateForm();
                 }
                 else
                 {

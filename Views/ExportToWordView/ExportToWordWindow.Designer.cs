@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.employeesCmbBox = new System.Windows.Forms.ComboBox();
+            this.exportAllPsRadioBtn = new System.Windows.Forms.RadioButton();
+            this.exportEquipsByEmpRadioBtn = new System.Windows.Forms.RadioButton();
+            this.exportBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Silver;
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.employeesCmbBox);
+            this.groupBox1.Controls.Add(this.exportAllPsRadioBtn);
+            this.groupBox1.Controls.Add(this.exportEquipsByEmpRadioBtn);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
@@ -50,53 +50,56 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Выбор экспорта";
             // 
-            // radioButton1
+            // employeesCmbBox
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(12, 80);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(394, 31);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Экспорт оборудования по сотруднику";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.employeesCmbBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.employeesCmbBox.FormattingEnabled = true;
+            this.employeesCmbBox.Location = new System.Drawing.Point(12, 117);
+            this.employeesCmbBox.Name = "employeesCmbBox";
+            this.employeesCmbBox.Size = new System.Drawing.Size(582, 35);
+            this.employeesCmbBox.TabIndex = 2;
             // 
-            // radioButton2
+            // exportAllPsRadioBtn
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(12, 33);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(375, 31);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Экспорт всех АЗС с оборудованием";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.exportAllPsRadioBtn.AutoSize = true;
+            this.exportAllPsRadioBtn.Location = new System.Drawing.Point(12, 33);
+            this.exportAllPsRadioBtn.Name = "exportAllPsRadioBtn";
+            this.exportAllPsRadioBtn.Size = new System.Drawing.Size(375, 31);
+            this.exportAllPsRadioBtn.TabIndex = 1;
+            this.exportAllPsRadioBtn.TabStop = true;
+            this.exportAllPsRadioBtn.Text = "Экспорт всех АЗС с оборудованием";
+            this.exportAllPsRadioBtn.UseVisualStyleBackColor = true;
+            this.exportAllPsRadioBtn.CheckedChanged += new System.EventHandler(this.exportAllPsRadioBtn_CheckedChanged);
             // 
-            // comboBox1
+            // exportEquipsByEmpRadioBtn
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 117);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(582, 35);
-            this.comboBox1.TabIndex = 2;
+            this.exportEquipsByEmpRadioBtn.AutoSize = true;
+            this.exportEquipsByEmpRadioBtn.Location = new System.Drawing.Point(12, 80);
+            this.exportEquipsByEmpRadioBtn.Name = "exportEquipsByEmpRadioBtn";
+            this.exportEquipsByEmpRadioBtn.Size = new System.Drawing.Size(394, 31);
+            this.exportEquipsByEmpRadioBtn.TabIndex = 0;
+            this.exportEquipsByEmpRadioBtn.TabStop = true;
+            this.exportEquipsByEmpRadioBtn.Text = "Экспорт оборудования по сотруднику";
+            this.exportEquipsByEmpRadioBtn.UseVisualStyleBackColor = true;
+            this.exportEquipsByEmpRadioBtn.CheckedChanged += new System.EventHandler(this.exportEquipsByEmpRadioBtn_CheckedChanged);
             // 
-            // button1
+            // exportBtn
             // 
-            this.button1.ForeColor = System.Drawing.Color.SeaGreen;
-            this.button1.Location = new System.Drawing.Point(295, 177);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(304, 63);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Экспортировать";
-            this.button1.UseVisualStyleBackColor = true;
+            this.exportBtn.ForeColor = System.Drawing.Color.SeaGreen;
+            this.exportBtn.Location = new System.Drawing.Point(295, 177);
+            this.exportBtn.Name = "exportBtn";
+            this.exportBtn.Size = new System.Drawing.Size(304, 63);
+            this.exportBtn.TabIndex = 1;
+            this.exportBtn.Text = "Экспортировать";
+            this.exportBtn.UseVisualStyleBackColor = true;
+            this.exportBtn.Click += new System.EventHandler(this.exportBtn_Click);
             // 
             // ExportToWordWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(611, 252);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.exportBtn);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -105,6 +108,7 @@
             this.Name = "ExportToWordWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Экспорт в WORD";
+            this.Load += new System.EventHandler(this.ExportToWordWindow_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -114,9 +118,9 @@
         #endregion
 
         private GroupBox groupBox1;
-        private ComboBox comboBox1;
-        private RadioButton radioButton2;
-        private RadioButton radioButton1;
-        private Button button1;
+        private ComboBox employeesCmbBox;
+        private RadioButton exportAllPsRadioBtn;
+        private RadioButton exportEquipsByEmpRadioBtn;
+        private Button exportBtn;
     }
 }

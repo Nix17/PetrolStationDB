@@ -78,5 +78,31 @@ namespace PetrolStationDB.Controllers
 
             return result;
         }
+
+        public List<Guid> GetEquipmentsIdByEmployeeId(Guid _employeeId)
+        {
+            List<Guid> result = new List<Guid>();
+
+            try
+            {
+                using (_ContextDb db = new _ContextDb())
+                {
+                    var list = db.MaterialLiabilitys.Where(x => x.EmployeeId == _employeeId).ToList();
+                    if(list != null && list.Count > 0)
+                    {
+                        foreach(var item in list)
+                        {
+                            result.Add(item.EquipmentId);
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                return null;
+            }
+
+            return result;
+        }
     }
 }
