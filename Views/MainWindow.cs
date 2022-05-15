@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PetrolStationDB.Services;
 using PetrolStationDB.Database;
 using PetrolStationDB.Database.Models;
 using PetrolStationDB.Controllers;
@@ -231,7 +232,17 @@ namespace PetrolStationDB.Views
 
         private void backupDbBtn_Click(object sender, EventArgs e)
         {
-
+            using (BackupMySqlDatabase backupMySqlDatabase = new BackupMySqlDatabase())
+            {
+                if (backupMySqlDatabase.BackupDbToDesktop("server=localhost;user=root;pwd=;database=petrol_station;"))
+                {
+                    MessageBox.Show("Бэкап БД успешно сделан. Файл на рабочем столе.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Не получилось создать бэкап!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }
