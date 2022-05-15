@@ -16,55 +16,62 @@ namespace PetrolStationDB.Controllers
         {
             List<Employee> employees = null;
 
-            using (_ContextDb db = new _ContextDb())
+            try
             {
-                if(search == "")
+                using (_ContextDb db = new _ContextDb())
                 {
-                    return employees = db.Employees.OrderBy(e => e.PersonnelNumber).ToList();
-                }
-                else
-                {
-                    switch (field)
+                    if (search == "")
                     {
-                        case "common":
-                            employees = db.Employees
-                                .Where(
-                                    e => e.LastName.ToLower().Contains(search.ToLower())
-                                    || e.FirstName.ToLower().Contains(search.ToLower())
-                                    || e.MiddleName.ToLower().Contains(search.ToLower())
-                                    || e.CreatedBy.ToLower().Contains(search.ToLower())
-                                    || e.UpdatedBy.ToLower().Contains(search.ToLower())
-                                    || e.CreatedDate.ToString().ToLower().Contains(search.ToLower())
-                                    || e.UpdatedDate.ToString().ToLower().Contains(search.ToLower())
-                                ).OrderBy(e => e.PersonnelNumber).ToList();
-                            break;
+                        return employees = db.Employees.OrderBy(e => e.PersonnelNumber).ToList();
+                    }
+                    else
+                    {
+                        switch (field)
+                        {
+                            case "common":
+                                employees = db.Employees
+                                    .Where(
+                                        e => e.LastName.ToLower().Contains(search.ToLower())
+                                        || e.FirstName.ToLower().Contains(search.ToLower())
+                                        || e.MiddleName.ToLower().Contains(search.ToLower())
+                                        || e.CreatedBy.ToLower().Contains(search.ToLower())
+                                        || e.UpdatedBy.ToLower().Contains(search.ToLower())
+                                        || e.CreatedDate.ToString().ToLower().Contains(search.ToLower())
+                                        || e.UpdatedDate.ToString().ToLower().Contains(search.ToLower())
+                                    ).OrderBy(e => e.PersonnelNumber).ToList();
+                                break;
 
-                        case "lastname":
-                            employees = db.Employees
-                                .Where(
-                                    e => e.LastName.ToLower().Contains(search.ToLower())
-                                ).OrderBy(e => e.PersonnelNumber).ToList();
-                            break;
+                            case "lastname":
+                                employees = db.Employees
+                                    .Where(
+                                        e => e.LastName.ToLower().Contains(search.ToLower())
+                                    ).OrderBy(e => e.PersonnelNumber).ToList();
+                                break;
 
-                        case "firstname":
-                            employees = db.Employees
-                                .Where(
-                                    e => e.FirstName.ToLower().Contains(search.ToLower())
-                                ).OrderBy(e => e.PersonnelNumber).ToList();
-                            break;
+                            case "firstname":
+                                employees = db.Employees
+                                    .Where(
+                                        e => e.FirstName.ToLower().Contains(search.ToLower())
+                                    ).OrderBy(e => e.PersonnelNumber).ToList();
+                                break;
 
-                        case "middlename":
-                            employees = db.Employees
-                                .Where(
-                                    e => e.MiddleName.ToLower().Contains(search.ToLower())
-                                ).OrderBy(e => e.PersonnelNumber).ToList();
-                            break;
+                            case "middlename":
+                                employees = db.Employees
+                                    .Where(
+                                        e => e.MiddleName.ToLower().Contains(search.ToLower())
+                                    ).OrderBy(e => e.PersonnelNumber).ToList();
+                                break;
 
-                        default:
-                            employees = db.Employees.OrderBy(e => e.PersonnelNumber).ToList();
-                            break;
+                            default:
+                                employees = db.Employees.OrderBy(e => e.PersonnelNumber).ToList();
+                                break;
+                        }
                     }
                 }
+            }
+            catch
+            {
+                return null;
             }
 
             return employees;
@@ -82,23 +89,31 @@ namespace PetrolStationDB.Controllers
 
             Employee employee = null;
 
-            using(_ContextDb db = new _ContextDb())
+            try
             {
-                employee = db.Employees.FirstOrDefault(e => e.Id == _guid);
-                if(employee != null)
+                using (_ContextDb db = new _ContextDb())
                 {
-                    employee.UpdatedBy = _user;
-                    employee.UpdatedDate = DateTime.Now;
+                    employee = db.Employees.FirstOrDefault(e => e.Id == _guid);
+                    if (employee != null)
+                    {
+                        employee.UpdatedBy = _user;
+                        employee.UpdatedDate = DateTime.Now;
 
-                    if(_lastName != "") { employee.LastName = _lastName; }
-                    if(_firstName != "") { employee.FirstName = _firstName; }
-                    if(_middleName != "") { employee.MiddleName = _middleName; }
+                        if (_lastName != "") { employee.LastName = _lastName; }
+                        if (_firstName != "") { employee.FirstName = _firstName; }
+                        if (_middleName != "") { employee.MiddleName = _middleName; }
 
-                    db.Employees.Update(employee);
-                    db.SaveChanges();
-                    result = true;
+                        db.Employees.Update(employee);
+                        db.SaveChanges();
+                        result = true;
+                    }
                 }
             }
+            catch
+            {
+                return false;
+            }
+            
             return result;
         }
 
@@ -108,17 +123,25 @@ namespace PetrolStationDB.Controllers
 
             Employee employee = null;
 
-            using(_ContextDb db = new _ContextDb())
+            try
             {
-                employee = db.Employees.FirstOrDefault(e => e.Id == _guid);
-
-                if(employee != null)
+                using (_ContextDb db = new _ContextDb())
                 {
-                    db.Employees.Remove(employee);
-                    db.SaveChanges();
-                    deleted = true;
+                    employee = db.Employees.FirstOrDefault(e => e.Id == _guid);
+
+                    if (employee != null)
+                    {
+                        db.Employees.Remove(employee);
+                        db.SaveChanges();
+                        deleted = true;
+                    }
                 }
             }
+            catch
+            {
+                return false;
+            }
+            
             return deleted;
         }
 
@@ -132,19 +155,27 @@ namespace PetrolStationDB.Controllers
             _employee.CreatedDate = DateTime.Now;
             _employee.UpdatedDate = DateTime.Now;
 
-            using(_ContextDb db = new _ContextDb())
+            try
             {
-                db.Employees.Add(_employee);
-                db.SaveChanges();
-            }
-
-            using(_ContextDb db = new _ContextDb())
-            {
-                if(db.Employees.Any(e => e.Id == guid))
+                using (_ContextDb db = new _ContextDb())
                 {
-                    added = true;
+                    db.Employees.Add(_employee);
+                    db.SaveChanges();
+                }
+
+                using (_ContextDb db = new _ContextDb())
+                {
+                    if (db.Employees.Any(e => e.Id == guid))
+                    {
+                        added = true;
+                    }
                 }
             }
+            catch
+            {
+                return false;
+            }
+            
             return added;
         }
 
@@ -152,12 +183,19 @@ namespace PetrolStationDB.Controllers
         {
             int num = 0;
 
-            using (_ContextDb db = new _ContextDb())
+            try
             {
-                if(db.Employees.ToList().Count > 0)
+                using (_ContextDb db = new _ContextDb())
                 {
-                    num = db.Employees.Max(e => e.PersonnelNumber);
+                    if (db.Employees.ToList().Count > 0)
+                    {
+                        num = db.Employees.Max(e => e.PersonnelNumber);
+                    }
                 }
+            }
+            catch
+            {
+                return 0;
             }
 
             return num;

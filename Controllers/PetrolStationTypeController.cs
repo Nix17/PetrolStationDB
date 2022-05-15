@@ -16,47 +16,55 @@ namespace PetrolStationDB.Controllers
         {
             List<PetrolStationType> result = null;
 
-            using (_ContextDb db = new _ContextDb())
+            try
             {
-                if(search == "")
+                using (_ContextDb db = new _ContextDb())
                 {
-                    result = db.PetrolStationTypes.ToList();
-                }
-                else
-                {
-                    switch (field)
+                    if (search == "")
                     {
-                        case "common":
-                            result = db.PetrolStationTypes
-                                .Where(
-                                    psType => psType.TypeName.ToLower().Contains(search.ToLower()) 
-                                    || psType.CreatedBy.ToLower().Contains(search.ToLower())
-                                    || psType.UpdatedBy.ToLower().Contains(search.ToLower())
-                                    || psType.CreatedDate.ToString().ToLower().Contains(search.ToLower())
-                                    || psType.UpdatedDate.ToString().ToLower().Contains(search.ToLower())
-                                ).ToList();
-                            break;
+                        result = db.PetrolStationTypes.ToList();
+                    }
+                    else
+                    {
+                        switch (field)
+                        {
+                            case "common":
+                                result = db.PetrolStationTypes
+                                    .Where(
+                                        psType => psType.TypeName.ToLower().Contains(search.ToLower())
+                                        || psType.CreatedBy.ToLower().Contains(search.ToLower())
+                                        || psType.UpdatedBy.ToLower().Contains(search.ToLower())
+                                        || psType.CreatedDate.ToString().ToLower().Contains(search.ToLower())
+                                        || psType.UpdatedDate.ToString().ToLower().Contains(search.ToLower())
+                                    ).ToList();
+                                break;
 
-                        case "typename":
-                            result = db.PetrolStationTypes.Where(psType => psType.TypeName.ToLower().Contains(search.ToLower())).ToList();
-                            break;
+                            case "typename":
+                                result = db.PetrolStationTypes.Where(psType => psType.TypeName.ToLower().Contains(search.ToLower())).ToList();
+                                break;
 
-                        case "userBy":
-                            result = db.PetrolStationTypes
-                                .Where(psType => psType.CreatedBy.ToLower().Contains(search.ToLower()) || psType.UpdatedBy.ToLower().Contains(search.ToLower())).ToList();
-                            break;
+                            case "userBy":
+                                result = db.PetrolStationTypes
+                                    .Where(psType => psType.CreatedBy.ToLower().Contains(search.ToLower()) || psType.UpdatedBy.ToLower().Contains(search.ToLower())).ToList();
+                                break;
 
-                        case "date":
-                            result = db.PetrolStationTypes
-                                .Where(psType => psType.CreatedDate.ToString().ToLower().Contains(search.ToLower()) || psType.UpdatedDate.ToString().ToLower().Contains(search.ToLower())).ToList();
-                            break;
+                            case "date":
+                                result = db.PetrolStationTypes
+                                    .Where(psType => psType.CreatedDate.ToString().ToLower().Contains(search.ToLower()) || psType.UpdatedDate.ToString().ToLower().Contains(search.ToLower())).ToList();
+                                break;
 
-                        default:
-                            result = db.PetrolStationTypes.ToList();
-                            break;
+                            default:
+                                result = db.PetrolStationTypes.ToList();
+                                break;
+                        }
                     }
                 }
             }
+            catch
+            {
+                return null;
+            }
+            
             return result;
         }
 
@@ -65,20 +73,28 @@ namespace PetrolStationDB.Controllers
             bool result = false;
             PetrolStationType psType = null;
 
-            using (_ContextDb db = new _ContextDb())
+            try
             {
-                psType = db.PetrolStationTypes.FirstOrDefault(ps => ps.Id == _id);
-                if(psType != null)
+                using (_ContextDb db = new _ContextDb())
                 {
-                    psType.TypeName = _typeName;
-                    psType.UpdatedBy = _user;
-                    psType.UpdatedDate = DateTime.Now;
-                    db.PetrolStationTypes.Update(psType);
-                    db.SaveChanges();
+                    psType = db.PetrolStationTypes.FirstOrDefault(ps => ps.Id == _id);
+                    if (psType != null)
+                    {
+                        psType.TypeName = _typeName;
+                        psType.UpdatedBy = _user;
+                        psType.UpdatedDate = DateTime.Now;
+                        db.PetrolStationTypes.Update(psType);
+                        db.SaveChanges();
 
-                    result = true;
+                        result = true;
+                    }
                 }
             }
+            catch
+            {
+                return false;
+            }
+
             return result;
         }
 
@@ -87,16 +103,24 @@ namespace PetrolStationDB.Controllers
             bool result = false;
             PetrolStationType psType = null;
 
-            using(_ContextDb db = new _ContextDb())
+            try
             {
-                psType = db.PetrolStationTypes.FirstOrDefault(ps => ps.Id == _id);
-                if( psType != null)
+                using (_ContextDb db = new _ContextDb())
                 {
-                    db.PetrolStationTypes.Remove(psType);
-                    db.SaveChanges();
-                    result = true;
+                    psType = db.PetrolStationTypes.FirstOrDefault(ps => ps.Id == _id);
+                    if (psType != null)
+                    {
+                        db.PetrolStationTypes.Remove(psType);
+                        db.SaveChanges();
+                        result = true;
+                    }
                 }
             }
+            catch
+            {
+                return false;
+            }
+
             return result;
         }
 
@@ -105,27 +129,34 @@ namespace PetrolStationDB.Controllers
             bool isAdd = false;
             Guid guid;
 
-            using (_ContextDb db = new _ContextDb())
+            try
             {
-                PetrolStationType psType = new PetrolStationType
+                using (_ContextDb db = new _ContextDb())
                 {
-                    Id = Guid.NewGuid(),
-                    TypeName = _typename,
-                    CreatedBy = _user,
-                    CreatedDate = DateTime.Now,
-                    UpdatedBy = _user,
-                    UpdatedDate = DateTime.Now
-                };
+                    PetrolStationType psType = new PetrolStationType
+                    {
+                        Id = Guid.NewGuid(),
+                        TypeName = _typename,
+                        CreatedBy = _user,
+                        CreatedDate = DateTime.Now,
+                        UpdatedBy = _user,
+                        UpdatedDate = DateTime.Now
+                    };
 
-                guid = psType.Id;
+                    guid = psType.Id;
 
-                db.PetrolStationTypes.Add(psType);
-                db.SaveChanges();
+                    db.PetrolStationTypes.Add(psType);
+                    db.SaveChanges();
+                }
+
+                using (var db = new _ContextDb())
+                {
+                    if (db.PetrolStationTypes.Any(ps => ps.Id == guid)) { isAdd = true; }
+                }
             }
-
-            using (var db = new _ContextDb())
+            catch
             {
-                if(db.PetrolStationTypes.Any(ps => ps.Id == guid)) { isAdd = true; }
+                return false;
             }
 
             return isAdd;

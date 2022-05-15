@@ -17,11 +17,19 @@ namespace PetrolStationDB.Controllers
             User user = null;
             EncryptionText et = new EncryptionText();
 
-            using (_ContextDb db = new _ContextDb())
+            try
             {
-                var res = db.Users.FirstOrDefault(x => x.Login == _login && x.Password == et.ComputeSha256Hash(_pass));
-                if (res != null) user = res;
+                using (_ContextDb db = new _ContextDb())
+                {
+                    var res = db.Users.FirstOrDefault(x => x.Login == _login && x.Password == et.ComputeSha256Hash(_pass));
+                    if (res != null) user = res;
+                }
             }
+            catch
+            {
+                return null;
+            }
+            
             return user;
         }
     }

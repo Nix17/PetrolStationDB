@@ -21,32 +21,51 @@ namespace PetrolStationDB.Controllers
             User user = null;
             EncryptionText et = new EncryptionText();
 
-            using (_ContextDb db = new _ContextDb())
+            try
             {
-                user = db.Users.FirstOrDefault(u => u.Id == guid);
-                if (user != null)
+                using (_ContextDb db = new _ContextDb())
                 {
-                    user.Password = et.ComputeSha256Hash(newPass);
-                    user.UpdatedBy = user.Login;
-                    user.UpdatedDate = DateTime.Now;
-                    db.Users.Update(user);
-                    db.SaveChanges();
+                    user = db.Users.FirstOrDefault(u => u.Id == guid);
+                    if (user != null)
+                    {
+                        user.Password = et.ComputeSha256Hash(newPass);
+                        user.UpdatedBy = user.Login;
+                        user.UpdatedDate = DateTime.Now;
+                        db.Users.Update(user);
+                        db.SaveChanges();
 
-                    _user = db.Users.FirstOrDefault(u => u.Id == guid);
-                    _user.Password = newPass;
-                    
-                    result = true;
+                        _user = db.Users.FirstOrDefault(u => u.Id == guid);
+                        _user.Password = newPass;
+
+                        result = true;
+                    }
                 }
             }
+            catch
+            {
+                return false;
+            }
+            
             return result;
         }
 
         public List<User> ViewAllUsers()
         {
-            using(_ContextDb db = new _ContextDb())
+            List<User> users = null;
+
+            try
             {
-                return db.Users.ToList();
+                using (_ContextDb db = new _ContextDb())
+                {
+                    users = db.Users.ToList();
+                }
             }
+            catch
+            {
+                return null;
+            }
+
+            return users;
         }
     }
 }
