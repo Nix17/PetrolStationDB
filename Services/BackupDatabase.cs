@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PetrolStationDB.Services.Interfaces;
-using MySql.Data.MySqlClient;
+//using MySql.Data.MySqlClient;
 
 namespace PetrolStationDB.Services
 {
@@ -14,7 +14,7 @@ namespace PetrolStationDB.Services
         {
             bool result = false;
 
-            StringBuilder filePath = new StringBuilder();
+            /*StringBuilder filePath = new StringBuilder();
 
             try
             {
@@ -43,7 +43,7 @@ namespace PetrolStationDB.Services
             catch (Exception ex)
             {
                 return false;
-            }
+            }*/
 
             return result;
         }

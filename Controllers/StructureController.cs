@@ -26,10 +26,11 @@ namespace PetrolStationDB.Controllers
                     }
                     else
                     {
+                        var listLocal = db.Structures.ToList();
                         switch (field)
                         {
                             case "common":
-                                structuresList = db.Structures
+                                structuresList = listLocal
                                     .Where(
                                         s => s.Name.ToLower().Contains(search.ToLower())
                                         || s.Square.ToString().ToLower().Contains(search.ToLower())
@@ -39,14 +40,14 @@ namespace PetrolStationDB.Controllers
                                 break;
 
                             case "name":
-                                structuresList = db.Structures
+                                structuresList = listLocal
                                     .Where(
                                         s => s.Name.ToLower().Contains(search.ToLower())
                                     ).ToList();
                                 break;
 
                             case "square":
-                                structuresList = db.Structures
+                                structuresList = listLocal
                                     .Where(
                                         s => s.Square.ToString().Contains(search.ToLower())
                                     ).ToList();

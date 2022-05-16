@@ -26,10 +26,11 @@ namespace PetrolStationDB.Controllers
                     }
                     else
                     {
+                        var listLocal = db.PetrolStationTypes.ToList();
                         switch (field)
                         {
                             case "common":
-                                result = db.PetrolStationTypes
+                                result = listLocal
                                     .Where(
                                         psType => psType.TypeName.ToLower().Contains(search.ToLower())
                                         || psType.CreatedBy.ToLower().Contains(search.ToLower())
@@ -40,16 +41,16 @@ namespace PetrolStationDB.Controllers
                                 break;
 
                             case "typename":
-                                result = db.PetrolStationTypes.Where(psType => psType.TypeName.ToLower().Contains(search.ToLower())).ToList();
+                                result = listLocal.Where(psType => psType.TypeName.ToLower().Contains(search.ToLower())).ToList();
                                 break;
 
                             case "userBy":
-                                result = db.PetrolStationTypes
+                                result = listLocal
                                     .Where(psType => psType.CreatedBy.ToLower().Contains(search.ToLower()) || psType.UpdatedBy.ToLower().Contains(search.ToLower())).ToList();
                                 break;
 
                             case "date":
-                                result = db.PetrolStationTypes
+                                result = listLocal
                                     .Where(psType => psType.CreatedDate.ToString().ToLower().Contains(search.ToLower()) || psType.UpdatedDate.ToString().ToLower().Contains(search.ToLower())).ToList();
                                 break;
 

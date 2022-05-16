@@ -10,6 +10,7 @@ using PetrolStationDB.Database.Models;
 
 namespace PetrolStationDB.Database.Models
 {
+    [Table("employee")]
     public class Employee: BaseEntity
     {
         [Column("personnel_number", Order = 1)]

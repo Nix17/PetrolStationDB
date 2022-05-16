@@ -26,37 +26,36 @@ namespace PetrolStationDB.Controllers
                     }
                     else
                     {
+                        var list = db.Employees.OrderBy(e => e.PersonnelNumber).ToList();
                         switch (field)
                         {
                             case "common":
-                                employees = db.Employees
+                                employees = list
                                     .Where(
-                                        e => e.LastName.ToLower().Contains(search.ToLower())
-                                        || e.FirstName.ToLower().Contains(search.ToLower())
-                                        || e.MiddleName.ToLower().Contains(search.ToLower())
-                                        || e.CreatedBy.ToLower().Contains(search.ToLower())
-                                        || e.UpdatedBy.ToLower().Contains(search.ToLower())
-                                        || e.CreatedDate.ToString().ToLower().Contains(search.ToLower())
-                                        || e.UpdatedDate.ToString().ToLower().Contains(search.ToLower())
+                                        e => e.LastName.ToString().ToLower().Contains(search.ToLower())
+                                        || e.FirstName.ToString().ToLower().Contains(search.ToLower())
+                                        || e.MiddleName.ToString().ToLower().Contains(search.ToLower())
+                                        || e.CreatedBy.ToString().ToLower().Contains(search.ToLower())
+                                        || e.UpdatedBy.ToString().ToLower().Contains(search.ToLower())
                                     ).OrderBy(e => e.PersonnelNumber).ToList();
                                 break;
 
                             case "lastname":
-                                employees = db.Employees
+                                employees = list
                                     .Where(
                                         e => e.LastName.ToLower().Contains(search.ToLower())
                                     ).OrderBy(e => e.PersonnelNumber).ToList();
                                 break;
 
                             case "firstname":
-                                employees = db.Employees
+                                employees = list
                                     .Where(
                                         e => e.FirstName.ToLower().Contains(search.ToLower())
                                     ).OrderBy(e => e.PersonnelNumber).ToList();
                                 break;
 
                             case "middlename":
-                                employees = db.Employees
+                                employees = list
                                     .Where(
                                         e => e.MiddleName.ToLower().Contains(search.ToLower())
                                     ).OrderBy(e => e.PersonnelNumber).ToList();

@@ -26,7 +26,8 @@ namespace PetrolStationDB.Controllers
                     }
                     else
                     {
-                        result = db.PetrolStationTypes.Where(t => t.TypeName.ToLower().Contains(search.ToLower())).ToList();
+                        var listLocal = db.PetrolStationTypes.ToList();
+                        result = listLocal.Where(t => t.TypeName.ToLower().Contains(search.ToLower())).ToList();
                     }
                 }
             }
@@ -153,10 +154,11 @@ namespace PetrolStationDB.Controllers
                     }
                     else
                     {
+                        var listLocal = db.PetrolStations.OrderBy(ps => ps.NumberStation).ToList();
                         switch (field)
                         {
                             case "common":
-                                list = db.PetrolStations
+                                list = listLocal
                                     .Where(
                                         ps => ps.NumberStation.ToString().Contains(search.ToLower())
                                         || ps.Location.ToLower().Contains(search.ToLower())
@@ -166,14 +168,14 @@ namespace PetrolStationDB.Controllers
                                 break;
 
                             case "numPStation":
-                                list = db.PetrolStations
+                                list = listLocal
                                     .Where(
                                         ps => ps.NumberStation.ToString().Contains(search.ToLower())
                                     ).OrderBy(ps => ps.NumberStation).ToList();
                                 break;
 
                             case "location":
-                                list = db.PetrolStations
+                                list = listLocal
                                     .Where(
                                         ps => ps.Location.ToLower().Contains(search.ToLower())
                                     ).OrderBy(ps => ps.NumberStation).ToList();

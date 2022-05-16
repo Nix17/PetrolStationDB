@@ -26,10 +26,11 @@ namespace PetrolStationDB.Controllers
                     }
                     else
                     {
+                        var listLocal = db.Equipments.ToList();
                         switch (field)
                         {
                             case "common":
-                                equipments = db.Equipments
+                                equipments = listLocal
                                     .Where(
                                         eq => eq.Name.ToLower().Contains(search.ToLower())
                                         || eq.Price.ToString().ToLower().Contains(search.ToLower())
@@ -39,14 +40,14 @@ namespace PetrolStationDB.Controllers
                                 break;
 
                             case "name":
-                                equipments = db.Equipments
+                                equipments = listLocal
                                     .Where(
                                         eq => eq.Name.ToLower().Contains(search.ToLower())
                                     ).ToList();
                                 break;
 
                             case "price":
-                                equipments = db.Equipments
+                                equipments = listLocal
                                     .Where(
                                         eq => eq.Price.ToString().ToLower().Contains(search.ToLower())
                                     ).ToList();
