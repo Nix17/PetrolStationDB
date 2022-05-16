@@ -65,44 +65,90 @@ namespace PetrolStationDB.Views
 
         private void profileBtn_Click(object sender, EventArgs e)
         {
-            ProfileWindow profWindow = new ProfileWindow(mUser);
-            profWindow.Show();
+            try
+            {
+                ProfileWindow profWindow = new ProfileWindow(mUser);
+                profWindow.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void typePsBtn_Click(object sender, EventArgs e)
         {
-            PetrolStationTypeWindow psTypeWindow = new PetrolStationTypeWindow(mUser, this);
-            psTypeWindow.Show();
+            try
+            {
+                PetrolStationTypeWindow psTypeWindow = new PetrolStationTypeWindow(mUser, this);
+                psTypeWindow.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void addPsBtn_Click(object sender, EventArgs e)
         {
-            PetrolStationWindow psWindow = new PetrolStationWindow(mUser, this);
-            psWindow.Show();
+            try
+            {
+                PetrolStationWindow psWindow = new PetrolStationWindow(mUser, this);
+                psWindow.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void EmployeesBtn_Click(object sender, EventArgs e)
         {
-            EmployeesWindow employeesWindow = new EmployeesWindow(mUser, this);
-            employeesWindow.Show();
+            try
+            {
+                EmployeesWindow employeesWindow = new EmployeesWindow(mUser, this);
+                employeesWindow.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void structuresBtn_Click(object sender, EventArgs e)
         {
-            StructureWindow structureWindow = new StructureWindow(mUser, this);
-            structureWindow.Show();
+            try
+            {
+                StructureWindow structureWindow = new StructureWindow(mUser, this);
+                structureWindow.Show();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void equipmentsBtn_Click(object sender, EventArgs e)
         {
-            EquipmentWindow equipmentWindow = new EquipmentWindow(mUser, this);
-            equipmentWindow.Show();
+            try
+            {
+                EquipmentWindow equipmentWindow = new EquipmentWindow(mUser, this);
+                equipmentWindow.Show();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void materialLiabilityBtn_Click(object sender, EventArgs e)
         {
-            MaterialLiabilityWindow materialLiabilityWindow = new MaterialLiabilityWindow(mUser, this);
-            materialLiabilityWindow.Show();
+            try
+            {
+                MaterialLiabilityWindow materialLiabilityWindow = new MaterialLiabilityWindow(mUser, this);
+                materialLiabilityWindow.Show();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void MainClearFilters()
@@ -213,47 +259,65 @@ namespace PetrolStationDB.Views
 
         private void commonMaxPriceEqPsBtn_Click(object sender, EventArgs e)
         {
-            PetrolStation res = controller.GetPetrolStationCommonMaxPriceEquipments();
-            if(res != null)
+            try
             {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.Append("АЗС с масимальной общей стоимостью оборудования:\n");
-                stringBuilder.Append("Номер -- " + res.NumberStation + "\n");
-                stringBuilder.Append("Локация -- " + res.Location);
-                MessageBox.Show(stringBuilder.ToString());
+                PetrolStation res = controller.GetPetrolStationCommonMaxPriceEquipments();
+                if (res != null)
+                {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.Append("АЗС с масимальной общей стоимостью оборудования:\n");
+                    stringBuilder.Append("Номер -- " + res.NumberStation + "\n");
+                    stringBuilder.Append("Локация -- " + res.Location);
+                    MessageBox.Show(stringBuilder.ToString());
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void exportToWordBtn_Click(object sender, EventArgs e)
         {
-            ExportToWordWindow exportForm = new ExportToWordWindow();
-            exportForm.Show();
+            try
+            {
+                ExportToWordWindow exportForm = new ExportToWordWindow();
+                exportForm.Show();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void backupDbBtn_Click(object sender, EventArgs e)
         {
-            using (BackupDatabase backupMySqlDatabase = new BackupDatabase())
+            try
             {
-                // SQLite
+                using (BackupDatabase backupMySqlDatabase = new BackupDatabase())
+                {
+                    // SQLite
 
-                if (backupMySqlDatabase.BackupSQLiteDbToDesktop("sqlite_petrol_station"))
-                {
-                    MessageBox.Show("Бэкап БД успешно сделан. Файл на рабочем столе.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Не получилось создать бэкап!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                    if (backupMySqlDatabase.BackupSQLiteDbToDesktop("sqlite_petrol_station"))
+                    {
+                        MessageBox.Show("Бэкап БД успешно сделан. Файл на рабочем столе.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Не получилось создать бэкап!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
 
-                // MySQL
-                /*if (backupMySqlDatabase.BackupMySqlDbToDesktop("server=localhost;user=root;pwd=;database=petrol_station;"))
-                {
-                    MessageBox.Show("Бэкап БД успешно сделан. Файл на рабочем столе.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // MySQL
+                    /*if (backupMySqlDatabase.BackupMySqlDbToDesktop("server=localhost;user=root;pwd=;database=petrol_station;"))
+                    {
+                        MessageBox.Show("Бэкап БД успешно сделан. Файл на рабочем столе.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Не получилось создать бэкап!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }*/
                 }
-                else
-                {
-                    MessageBox.Show("Не получилось создать бэкап!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }*/
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

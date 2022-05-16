@@ -48,13 +48,20 @@ namespace PetrolStationDB.Views.EmployeesView
 
         private Image GetImageFromUrl(string url)
         {
-            HttpWebRequest httpWebRequest = (HttpWebRequest)HttpWebRequest.Create(url);
-            using (HttpWebResponse httpWebReponse = (HttpWebResponse)httpWebRequest.GetResponse())
+            try
             {
-                using (Stream stream = httpWebReponse.GetResponseStream())
+                HttpWebRequest httpWebRequest = (HttpWebRequest)HttpWebRequest.Create(url);
+                using (HttpWebResponse httpWebReponse = (HttpWebResponse)httpWebRequest.GetResponse())
                 {
-                    return Image.FromStream(stream);
+                    using (Stream stream = httpWebReponse.GetResponseStream())
+                    {
+                        return Image.FromStream(stream);
+                    }
                 }
+            }
+            catch
+            {
+                return null;
             }
         }
 
@@ -81,6 +88,7 @@ namespace PetrolStationDB.Views.EmployeesView
                     dataEmployeesGV[2, i].Value = employees[i].LastName;
                     dataEmployeesGV[3, i].Value = employees[i].FirstName;
                     dataEmployeesGV[4, i].Value = employees[i].MiddleName;
+
                     dataEmployeesGV[5, i].Value = GetImageFromUrl(employees[i].PhotoUrl);
 
                     ps = psCtrl.GetSinglePStation(employees[i].PetrolStationId);

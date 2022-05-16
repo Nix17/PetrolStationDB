@@ -246,7 +246,16 @@ namespace PetrolStationDB.Controllers
                         item.CommonMaxPriceEquipments = equipments.Where(x => x.StructureId == item.StructureID).Sum(x => x.Price);
                     }
 
-                    decimal max = list.Max(x => x.CommonMaxPriceEquipments);
+                    //var max = list.Max(x => x.CommonMaxPriceEquipments);
+
+                    List<decimal> decValues = new List<decimal>();
+                    foreach (var val in list)
+                    {
+                        decValues.Add(val.CommonMaxPriceEquipments);
+                    }
+
+                    var max = decValues.Max();
+
                     var psItems = db.PetrolStations.ToList();
                     foreach (var item in list)
                     {
